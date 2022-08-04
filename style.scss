@@ -54,7 +54,7 @@ body {
             text-align: center;
             border-radius: 30%;
             padding: 5px 12px 5px 12px;
-            background: radial-gradient(circle at 100px 100px, #F6F0BC, #FFFDD0);
+            background: radial-gradient(circle at 100px 100px, white, #F8F0E3);
             color: #706A55;
             border: 2px solid #C4A484;
         }
@@ -63,7 +63,7 @@ body {
             text-align: center;
             border-radius: 30%;
             padding: 5px 12px 5px 12px;
-            background: radial-gradient(circle at 100px 100px, #F6F0BC, #FFFDD0);
+            background: radial-gradient(circle at 100px 100px, white, #F8F0E3);
             color: #706A55;
             border: 2px solid #C4A484;
         }
@@ -86,8 +86,6 @@ body {
             gap: 15%;
     
             .target {
-                border: 1px solid teal;
-                background-color: aquamarine;
                 border-radius: 100%;
                 padding: 20px;
                 text-align: center;
