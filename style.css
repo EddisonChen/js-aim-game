@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+* {
+  font-family: "Russo One";
+  margin: 0;
+  padding: 0;
+  cursor: crosshair;
+  font-size: 17px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr 14fr 1fr;
+}
+body h1 {
+  text-align: center;
+}
+body .bottom-nav-bar {
+  text-align: center;
+}
+body .grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  height: 90%;
+}
+body .grid .grid-in-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  width: 95%;
+  height: 95%;
+  gap: 15%;
+}
+body .grid .grid-in-grid .target {
+  border: 1px solid teal;
+  background-color: aquamarine;
+  border-radius: 50%;
+  width: 100%;
+  height: auto;
+  padding-top: 100%;
+}
+body .grid .grid-in-grid .desktop {
+  display: none;
+}/*# sourceMappingURL=style.css.map */
