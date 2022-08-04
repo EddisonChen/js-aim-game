@@ -17,7 +17,9 @@ var playableArea = document.querySelector('.grid');
 var accuracy = document.querySelector('.accuracy');
 var score = document.querySelector('.score');
 var resett = document.querySelector(".resett");
-var highScore = document.querySelector('.high-score'); //game start
+var timer = document.querySelector('.timer'); // timer starts at 30
+
+var time = 30; //hides all spheres
 
 var hideAll = function hideAll() {
   targetsArr.forEach(function (target) {
@@ -47,9 +49,24 @@ var showRandomSpheres = function showRandomSpheres() {
 
 var startGame = function startGame() {
   startButton.addEventListener("click", function () {
-    resetFunctions();
+    time = 30;
+    hardReset();
     hideAll();
     showRandomSpheres();
+    var timeStart = setInterval(function () {
+      // starts timer
+      if (time >= 1 && time <= 30) {
+        timer.innerHTML = "Time Remaining: ".concat(time, " secs");
+        time--;
+      } else if (time = 1) {
+        // resets timer 
+        clearInterval(timeStart);
+        time = 30;
+        timer.innerHTML = "Time Remaining: ".concat(time, " secs");
+        hideAll();
+      }
+    }, 1000);
+    startButton.disabled = true;
   });
 };
 
@@ -75,7 +92,10 @@ var clickCounter = 0; // updates score and accuracy, logs total clicks on playab
 
 var totalClicks = function totalClicks() {
   playableArea.addEventListener("click", function () {
-    clickCounter++;
+    if (time < 30) {
+      clickCounter++;
+    }
+
     accuracyUpdater();
     scoreUpdater();
   });
@@ -105,7 +125,7 @@ var scoreUpdater = function scoreUpdater() {
 }; // clears score, accuracy, clickCounter, and targetClickCounter
 
 
-var resetFunctions = function resetFunctions() {
+var hardReset = function hardReset() {
   clickCounter = 0;
   targetClickCounter = 0;
   accuracy.innerHTML = "Accuracy:";
@@ -115,12 +135,13 @@ var resetFunctions = function resetFunctions() {
 
 var resetClick = function resetClick() {
   resett.addEventListener("click", function () {
-    resetFunctions();
+    hardReset();
     hideAll();
+    startButton.disabled = false;
+    time = 31;
   });
 };
 
-resetClick(); // put clicks in an array
-// look up how to make js more efficient
-// add click counter
+resetClick(); // look up how to make js more efficient
 // add sound effects or music?
+// fix multiple start presses

@@ -17,9 +17,12 @@ const playableArea = document.querySelector('.grid');
 const accuracy = document.querySelector('.accuracy');
 const score = document.querySelector('.score');
 const resett = document.querySelector(`.resett`);
-const highScore = document.querySelector('.high-score')
+const timer = document.querySelector('.timer');
 
-//game start
+// timer starts at 30
+let time = 30;
+
+//hides all spheres
 const hideAll = () => {
     targetsArr.forEach((target) => {
         target.classList.add("hidden");
@@ -46,9 +49,22 @@ const showRandomSpheres = () => {
 // starts game, resets score, accuracy, hides all spheres, shows 3 random spheres
 const startGame = () => {
     startButton.addEventListener("click", () => {
-        resetFunctions();
+        time = 30;
+        hardReset();
         hideAll();
         showRandomSpheres();
+        const timeStart = setInterval(() => { // starts timer
+            if (time >= 1 && time <= 30) {
+                timer.innerHTML = `Time Remaining: ${time} secs`;
+                time --;
+            } else if (time = 1) { // resets timer 
+                clearInterval(timeStart);
+                time = 30;
+                timer.innerHTML = `Time Remaining: ${time} secs`
+                hideAll();
+            }
+        }, 1000);
+        startButton.disabled = true;
     });
 }
 startGame();
@@ -75,7 +91,9 @@ let clickCounter = 0
 // updates score and accuracy, logs total clicks on playable area
 const totalClicks = () => {
     playableArea.addEventListener("click", () => {
-        clickCounter ++;
+        if (time < 30) {
+            clickCounter ++;
+        }
         accuracyUpdater();
         scoreUpdater();
     });
@@ -105,7 +123,7 @@ const scoreUpdater = () => {
 }
 
 // clears score, accuracy, clickCounter, and targetClickCounter
-const resetFunctions = () => {
+const hardReset = () => {
         clickCounter = 0;
         targetClickCounter = 0;
         accuracy.innerHTML = `Accuracy:`;
@@ -115,13 +133,15 @@ const resetFunctions = () => {
 // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres
 const resetClick = () => {
     resett.addEventListener("click", () => {
-        resetFunctions();
+        hardReset();
         hideAll();
+        startButton.disabled = false;
+        time = 31;
     });
 }
 resetClick();
 
-// put clicks in an array
 // look up how to make js more efficient
-// add click counter
 // add sound effects or music?
+
+// fix multiple start presses
