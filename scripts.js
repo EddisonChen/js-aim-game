@@ -14,31 +14,55 @@ const targets = document.querySelectorAll(".target");
 const targetsArr = Array.from(targets)
 const startGame = document.querySelector('button')
 
-const randomTargets = Math.floor(Math.random()*targetsArr.length);
-
 //game start
-const assignHiddenClass = () => {
-    targetsArr[randomTargets].classList.add("hidden");
+const hideAll = () => {
+    targetsArr.forEach((target) => {
+        target.classList.add("hidden")
+    })
+}
+
+hideAll();
+
+// selects 3 random spheres to be visible on start click
+const showRandomSpheres = () => {
+    let ranNumArr = [];
+    while (ranNumArr.length < 3) {
+        let ranNum = Math.floor(Math.random()*8);
+        if(ranNumArr.indexOf(ranNum) === -1) {
+            ranNumArr.push(ranNum);
+        }
+    }
+    targetsArr[ranNumArr[0]].classList.add("visible"), targetsArr[ranNumArr[0]].classList.remove("hidden");
+    targetsArr[ranNumArr[1]].classList.add("visible"), targetsArr[ranNumArr[1]].classList.remove("hidden");
+    targetsArr[ranNumArr[2]].classList.add("visible"), targetsArr[ranNumArr[2]].classList.remove("hidden");
 }
 
 startGame.addEventListener("click", () => {
-    assignHiddenClass();
+    hideAll();
+    showRandomSpheres();
 })
 
 // target appear on click
-const hiddenTargets = targetsArr.filter((hiddenTarget) => {
-    return hiddenTarget.classList.contains("hidden");
-});
-
-const randomHiddenTarget = Math.floor(Math.random()*hiddenTargets.length);
-
 const targetAppear = () => {
-    hiddenTargets[randomHiddenTarget].classList.remove("hidden");
+    const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
+        return hiddenTarget.classList.contains("hidden");
+    })
+
+    let ranNumArr = [];
+    while (ranNumArr.length < 1) {
+        let ranNum = Math.floor(Math.random()*5);
+        if(ranNumArr.indexOf(ranNum) === -1) {
+            ranNumArr.push(ranNum);
+        }
+    }
+    hiddenTargetsArr[ranNumArr[0]].classList.add("visible");
+    hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
 }
 // target disappear on click
 const targetVanish = (target) => {
     console.log(`${target} was clicked!!`);
     target.classList.add("hidden");
+    target.classList.remove("visible");
 }
 
 // get 3 spheres to show up at once
@@ -51,3 +75,4 @@ targetsArr.forEach((target) => {
     })
 });
 
+// get assignVisibleClass to run 3 times upon clicking game start
