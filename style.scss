@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Space+Mono:wght@700&display=swap');
 
 * {
-    font-family: 'Russo One';
+    font-family: 'Space Grotesk';
     margin: 0;
     padding: 0;
     cursor: crosshair;
@@ -20,27 +21,52 @@ body {
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr 1fr 15fr 1fr;
+    grid-template-rows: 1fr 1fr 15fr 1fr;
+    background-image: url("./pics/white-abstract.jpg");
+    background-size: 550px;
 
     h1 {
         text-align: center;
+        color: #966fd6;
+        font-size: 23px;
     }
 
-    // .infobar {
-    //     display: flex;
-    //     flex-direction: row;
-    //     justify-content: space-around;
-    // }
+    .infobar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: #3D426B;
+    }
 
-    .start {
+    .start-div {
         text-align: center;
+        // border: 2px solid black;
+        width:100%
     }
 
     .bottom-nav-bar {
-        text-align: center;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-row: 1fr;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        .start {
+            text-align: center;
+            border-radius: 30%;
+            padding: 5px 12px 5px 12px;
+            background: radial-gradient(circle at 100px 100px, #F6F0BC, #FFFDD0);
+            color: #706A55;
+            border: 2px solid #C4A484;
+        }
+
+        .resett {
+            text-align: center;
+            border-radius: 30%;
+            padding: 5px 12px 5px 12px;
+            background: radial-gradient(circle at 100px 100px, #F6F0BC, #FFFDD0);
+            color: #706A55;
+            border: 2px solid #C4A484;
+        }
     }
 
     .grid {
@@ -52,8 +78,8 @@ body {
 
         .grid-in-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
             // border: 1px solid black;
             width: 90%;
             height: 90%;
@@ -64,13 +90,20 @@ body {
                 background-color: aquamarine;
                 border-radius: 100%;
                 padding: 20px;
-        
-             }
-             
+                text-align: center;
+                font-size: 25px;
+                background: radial-gradient(circle at 100px 100px, #5cabff, #8e7faa);
+            }
             .desktop {
                 display:none;
             }
          }
        }
-
 }
+
+@media only screen and (orientation:portrait) {
+    body {
+      height: 100vw;
+      transform: rotate(90deg);
+    }
+  }

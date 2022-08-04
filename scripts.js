@@ -55,12 +55,12 @@ const startGame = () => {
         showRandomSpheres();
         const timeStart = setInterval(() => { // starts timer
             if (time >= 1 && time <= 30) {
-                timer.innerHTML = `Time Remaining: ${time} secs`;
+                timer.innerHTML = `${time} secs`;
                 time --;
             } else if (time = 1) { // resets timer 
                 clearInterval(timeStart);
                 time = 30;
-                timer.innerHTML = `Time Remaining: ${time} secs`
+                timer.innerHTML = `${time} secs`
                 hideAll();
             }
         }, 1000);
@@ -115,23 +115,23 @@ targetClick();
 // updates accuracy with each click
 const accuracyUpdater = () => {
     if ((targetClickCounter/clickCounter * 100).toFixed(0) > 100) {
-        accuracy.innerHTML = `Accuracy: 100%`
+        accuracy.innerHTML = `accuracy: 100%`
     } else if ((targetClickCounter/clickCounter * 100).toFixed(0) <= 100) {
-        accuracy.innerHTML = `Accuracy: ${(targetClickCounter/clickCounter * 100).toFixed(0)}%`;
+        accuracy.innerHTML = `accuracy: ${(targetClickCounter/clickCounter * 100).toFixed(0)}%`;
     }       
 }
 
 // updates score with each click
 const scoreUpdater = () => {
-    score.innerHTML = `Score: ${targetClickCounter*120 - clickCounter*20}`;
+    score.innerHTML = `score: ${targetClickCounter*120 - clickCounter*20}`;
 }
 
 // clears score, accuracy, clickCounter, and targetClickCounter
 const hardReset = () => {
         clickCounter = 0;
         targetClickCounter = 0;
-        accuracy.innerHTML = `Accuracy:`;
-        score.innerHTML = `Score:`
+        accuracy.innerHTML = `accuracy:`;
+        score.innerHTML = `score:`
 }
 
 // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres

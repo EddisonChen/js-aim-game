@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Space+Mono:wght@700&display=swap");
 * {
-  font-family: "Russo One";
+  font-family: "Space Grotesk";
   margin: 0;
   padding: 0;
   cursor: crosshair;
@@ -20,19 +21,46 @@ body {
   width: 100vw;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 15fr 1fr;
+  grid-template-rows: 1fr 1fr 15fr 1fr;
+  background-image: url("./pics/white-abstract.jpg");
+  background-size: 550px;
 }
 body h1 {
   text-align: center;
+  color: #966fd6;
+  font-size: 23px;
 }
-body .start {
+body .infobar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: #3D426B;
+}
+body .start-div {
   text-align: center;
+  width: 100%;
 }
 body .bottom-nav-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+body .bottom-nav-bar .start {
   text-align: center;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-row: 1fr;
+  border-radius: 30%;
+  padding: 5px 12px 5px 12px;
+  background: radial-gradient(circle at 100px 100px, #F6F0BC, #FFFDD0);
+  color: #706A55;
+  border: 2px solid #C4A484;
+}
+body .bottom-nav-bar .resett {
+  text-align: center;
+  border-radius: 30%;
+  padding: 5px 12px 5px 12px;
+  background: radial-gradient(circle at 100px 100px, #F6F0BC, #FFFDD0);
+  color: #706A55;
+  border: 2px solid #C4A484;
 }
 body .grid {
   display: flex;
@@ -42,8 +70,8 @@ body .grid {
 }
 body .grid .grid-in-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   width: 90%;
   height: 90%;
   gap: 15%;
@@ -53,7 +81,17 @@ body .grid .grid-in-grid .target {
   background-color: aquamarine;
   border-radius: 100%;
   padding: 20px;
+  text-align: center;
+  font-size: 25px;
+  background: radial-gradient(circle at 100px 100px, #5cabff, #8e7faa);
 }
 body .grid .grid-in-grid .desktop {
   display: none;
+}
+
+@media only screen and (orientation: portrait) {
+  body {
+    height: 100vw;
+    transform: rotate(90deg);
+  }
 }/*# sourceMappingURL=style.css.map */
