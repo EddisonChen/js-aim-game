@@ -43,21 +43,31 @@ startGame.addEventListener("click", () => {
 })
 
 // target appear on click
+// const targetAppear = () => {
+//     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
+//         return hiddenTarget.classList.contains("hidden");
+//     })
+
+//     let ranNumArr = [];
+//     while (ranNumArr.length < 1) {
+//         let ranNum = Math.floor(Math.random()*5);
+//         if(ranNumArr.indexOf(ranNum) === -1) {
+//             ranNumArr.push(ranNum);
+//         }
+//     }
+//     hiddenTargetsArr[ranNumArr[0]].classList.add("visible");
+//     hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
+// }
+
 const targetAppear = () => {
     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
         return hiddenTarget.classList.contains("hidden");
     })
-
-    let ranNumArr = [];
-    while (ranNumArr.length < 1) {
-        let ranNum = Math.floor(Math.random()*5);
-        if(ranNumArr.indexOf(ranNum) === -1) {
-            ranNumArr.push(ranNum);
-        }
-    }
-    hiddenTargetsArr[ranNumArr[0]].classList.add("visible");
-    hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
+        // let ranNum = Math.floor(Math.random()*5);
+    hiddenTargetsArr[Math.floor(Math.random()*5)].classList.add("visible");
+    hiddenTargetsArr[Math.floor(Math.random()*5)].classList.remove("hidden");
 }
+
 // target disappear on click
 const targetVanish = (target) => {
     console.log(`${target} was clicked!!`);

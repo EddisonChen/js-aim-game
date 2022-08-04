@@ -42,23 +42,28 @@ startGame.addEventListener("click", function () {
   hideAll();
   showRandomSpheres();
 }); // target appear on click
+// const targetAppear = () => {
+//     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
+//         return hiddenTarget.classList.contains("hidden");
+//     })
+//     let ranNumArr = [];
+//     while (ranNumArr.length < 1) {
+//         let ranNum = Math.floor(Math.random()*5);
+//         if(ranNumArr.indexOf(ranNum) === -1) {
+//             ranNumArr.push(ranNum);
+//         }
+//     }
+//     hiddenTargetsArr[ranNumArr[0]].classList.add("visible");
+//     hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
+// }
 
 var targetAppear = function targetAppear() {
   var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
     return hiddenTarget.classList.contains("hidden");
-  });
-  var ranNumArr = [];
+  }); // let ranNum = Math.floor(Math.random()*5);
 
-  while (ranNumArr.length < 1) {
-    var ranNum = Math.floor(Math.random() * 5);
-
-    if (ranNumArr.indexOf(ranNum) === -1) {
-      ranNumArr.push(ranNum);
-    }
-  }
-
-  hiddenTargetsArr[ranNumArr[0]].classList.add("visible");
-  hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
+  hiddenTargetsArr[Math.floor(Math.random() * 5)].classList.add("visible");
+  hiddenTargetsArr[Math.floor(Math.random() * 5)].classList.remove("hidden");
 }; // target disappear on click
 
 
