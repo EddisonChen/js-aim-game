@@ -4,7 +4,7 @@
 // have 3 circles on screen at any given time
 // on circle click, it disappears and a random one spawns
 // record each click 
-//accuracy = circle clicks/total clicks
+// accuracy = circle clicks/total clicks
 // score = 100 points per accurate click, minus 20 points per miss
 // time limit = 60secs
 // high score list?
@@ -12,11 +12,17 @@
 // step one: make clickable circles!
 var targets = document.querySelectorAll(".target");
 var targetsArr = Array.from(targets);
-var startGame = document.querySelector('button'); //game start
+var startButton = document.querySelector('button');
+var playableArea = document.querySelector('.grid');
+var accuracy = document.querySelector('.accuracy');
+var score = document.querySelector('.score');
+var resett = document.querySelector(".resett");
+var highScore = document.querySelector('.high-score'); //game start
 
 var hideAll = function hideAll() {
   targetsArr.forEach(function (target) {
     target.classList.add("hidden");
+    target.classList.remove("visible");
   });
 };
 
@@ -36,48 +42,85 @@ var showRandomSpheres = function showRandomSpheres() {
   targetsArr[ranNumArr[0]].classList.add("visible"), targetsArr[ranNumArr[0]].classList.remove("hidden");
   targetsArr[ranNumArr[1]].classList.add("visible"), targetsArr[ranNumArr[1]].classList.remove("hidden");
   targetsArr[ranNumArr[2]].classList.add("visible"), targetsArr[ranNumArr[2]].classList.remove("hidden");
+}; // starts game, resets score, accuracy, hides all spheres, shows 3 random spheres
+
+
+var startGame = function startGame() {
+  startButton.addEventListener("click", function () {
+    resetFunctions();
+    hideAll();
+    showRandomSpheres();
+  });
 };
 
-startGame.addEventListener("click", function () {
-  hideAll();
-  showRandomSpheres();
-}); // target appear on click
-// const targetAppear = () => {
-//     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
-//         return hiddenTarget.classList.contains("hidden");
-//     })
-//     let ranNumArr = [];
-//     while (ranNumArr.length < 1) {
-//         let ranNum = Math.floor(Math.random()*5);
-//         if(ranNumArr.indexOf(ranNum) === -1) {
-//             ranNumArr.push(ranNum);
-//         }
-//     }
-//     hiddenTargetsArr[ranNumArr[0]].classList.add("visible");
-//     hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
-// }
+startGame(); // random target appear on click
 
 var targetAppear = function targetAppear() {
   var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
     return hiddenTarget.classList.contains("hidden");
-  }); // let ranNum = Math.floor(Math.random()*5);
-
-  hiddenTargetsArr[Math.floor(Math.random() * 5)].classList.add("visible");
-  hiddenTargetsArr[Math.floor(Math.random() * 5)].classList.remove("hidden");
+  });
+  var ranNum = Math.floor(Math.random() * 5);
+  hiddenTargetsArr[ranNum].classList.add("visible");
+  hiddenTargetsArr[ranNum].classList.remove("hidden");
 }; // target disappear on click
 
 
 var targetVanish = function targetVanish(target) {
-  console.log("".concat(target, " was clicked!!"));
   target.classList.add("hidden");
   target.classList.remove("visible");
-}; // get 3 spheres to show up at once
-// get appear to apply only to hidden spheres
+};
 
+var targetClickCounter = 0;
+var clickCounter = 0; // updates score and accuracy, logs total clicks on playable area
 
-targetsArr.forEach(function (target) {
-  target.addEventListener("click", function () {
-    targetVanish(target);
-    targetAppear();
+var totalClicks = function totalClicks() {
+  playableArea.addEventListener("click", function () {
+    clickCounter++;
+    accuracyUpdater();
+    scoreUpdater();
   });
-}); // get assignVisibleClass to run 3 times upon clicking game start
+};
+
+totalClicks(); // disappears the target clicked, appears another random target, +1 to targetclickCounter
+
+var targetClick = function targetClick() {
+  targetsArr.forEach(function (target) {
+    target.addEventListener("click", function () {
+      targetAppear();
+      targetVanish(target);
+      targetClickCounter++;
+    });
+  });
+};
+
+targetClick(); // updates accuracy with each click
+
+var accuracyUpdater = function accuracyUpdater() {
+  accuracy.innerHTML = "Accuracy: ".concat((targetClickCounter / clickCounter * 100).toFixed(2), "%");
+}; // updates score with each click
+
+
+var scoreUpdater = function scoreUpdater() {
+  score.innerHTML = "Score: ".concat(targetClickCounter * 120 - clickCounter * 20);
+}; // clears score, accuracy, clickCounter, and targetClickCounter
+
+
+var resetFunctions = function resetFunctions() {
+  clickCounter = 0;
+  targetClickCounter = 0;
+  accuracy.innerHTML = "Accuracy:";
+  score.innerHTML = "Score:";
+}; // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres
+
+
+var resetClick = function resetClick() {
+  resett.addEventListener("click", function () {
+    resetFunctions();
+    hideAll();
+  });
+};
+
+resetClick(); // put clicks in an array
+// look up how to make js more efficient
+// add click counter
+// add sound effects or music?
