@@ -116,7 +116,11 @@ var targetClick = function targetClick() {
 targetClick(); // updates accuracy with each click
 
 var accuracyUpdater = function accuracyUpdater() {
-  accuracy.innerHTML = "Accuracy: ".concat((targetClickCounter / clickCounter * 100).toFixed(2), "%");
+  if ((targetClickCounter / clickCounter * 100).toFixed(0) > 100) {
+    accuracy.innerHTML = "Accuracy: 100%";
+  } else if ((targetClickCounter / clickCounter * 100).toFixed(0) <= 100) {
+    accuracy.innerHTML = "Accuracy: ".concat((targetClickCounter / clickCounter * 100).toFixed(0), "%");
+  }
 }; // updates score with each click
 
 
