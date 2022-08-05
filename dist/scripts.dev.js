@@ -22,10 +22,10 @@ var mobileTargets = document.querySelectorAll(".mobile");
 var mobileTargetsArr = Array.from(mobileTargets);
 var desktopTargets = document.querySelectorAll(".desktop");
 var desktopTargetsArr = Array.from(desktopTargets);
-var clickSound = new Audio("./soundfx/trimmedallshots.mp3");
-var resetClickSound = new Audio("./soundfx/trimmedresetclick.mp3");
-var startClickSound = new Audio("./soundfx/trimmedstartsound.mp3");
-var targetHitSound = new Audio("./soundfx/trimmedtargethit.mp3"); // audio play functions on click
+var clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
+var resetClickSound = new Audio("./soundfx/loweredtrimmedresetclick.mp3");
+var startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
+var targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3"); // audio play functions on click
 
 var playClickSound = function playClickSound() {
   clickSound.currentTime = 0; // resets audio to allow for consecutive clicks

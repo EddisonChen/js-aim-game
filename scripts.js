@@ -22,10 +22,10 @@ const mobileTargets = document.querySelectorAll(".mobile");
 const mobileTargetsArr = Array.from(mobileTargets);
 const desktopTargets = document.querySelectorAll(".desktop");
 const desktopTargetsArr = Array.from(desktopTargets);
-const clickSound = new Audio("./soundfx/trimmedallshots.mp3");
-const resetClickSound = new Audio ("./soundfx/trimmedresetclick.mp3");
-const startClickSound = new Audio("./soundfx/trimmedstartsound.mp3");
-const targetHitSound = new Audio("./soundfx/trimmedtargethit.mp3");
+const clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
+const resetClickSound = new Audio ("./soundfx/loweredtrimmedresetclick.mp3");
+const startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
+const targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3");
 
 // audio play functions on click
 const playClickSound =() => {
