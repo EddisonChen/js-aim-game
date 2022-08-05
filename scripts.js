@@ -69,7 +69,7 @@ const hideAll = () => {
         })
     }
 }
-hideAll();
+// hideAll();
 
 // selects 3 random spheres to be visible on start click
 const showRandomSpheres = () => {
