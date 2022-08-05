@@ -132,6 +132,11 @@ body {
   animation-timing-function: steps(2, end);
 }
 
+.button-49:disabled,
+button[disabled] {
+    opacity: 50%;
+}
+
 @keyframes glitch {
   0% {
     clip-path: var(--slice-1);
