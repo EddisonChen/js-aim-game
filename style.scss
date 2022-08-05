@@ -27,15 +27,20 @@ body {
     background-size: 2160px;
 
     h1 {
+        margin-top: 10px;
         text-align: center;
-        color: #966fd6;
-        // font-size: 23px;
+
+        img {
+            border-radius: 55px;
+            height: auto;
+            width: 150px         
+        }
     }
 
     .infobar {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         color: #3D426B;
     }
 
@@ -109,10 +114,6 @@ body {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 2fr 10fr 1fr;
 
-        h1 {
-            font-size: 25px;;
-        }
-
         .infobar {
             display: grid;
             grid-template-columns: 1fr;
@@ -168,7 +169,11 @@ body {
         grid-template-rows: 1fr 2fr 10fr 1fr;
 
         h1 {
-            font-size: 25px;;
+
+            img {
+                height: auto;
+                width: 200px;
+            }
         }
 
         .infobar {
@@ -217,47 +222,47 @@ body {
     }
 }
 
-
-@media screen and (min-width: 900px) {
-
-    h1 {
-        font-size: 20px;
-    }
-
-    h2, h3, h4 {
-        font-size: 20px;
-    }
-}
-
 @media screen and (min-width: 700px) {
+    body {
+        h1 {
+            img {
+                height: auto;
+                width: 200px;
+            }
+        }
 
-    h1 {
-        font-size: 25px;
-    }
-
-    h2, h3, h4 {
-        font-size: 20px;
-    }
+        h2, h3, h4 {
+            font-size: 20px;
+        }
+    }   
 }
 
 @media screen and (min-width: 900px) {
-
-    h1 {
-        font-size: 30px;
+    body {
+        h1 {
+            img {
+                height: auto;
+                width: 225px;
+            }
+        }
+    
+        h2, h3, h4 {
+            font-size: 35px; 
+        }
+    
+        .start, .resett {
+            font-size: 35px;
+        }
     }
-
-    h2, h3, h4 {
-        font-size: 25px; 
-    }
-
-    .start, .resett {
-        font-size: 25px;
-    }
+  
 }
 
 @media screen and (orientation: landscape) and (min-width: 1080px) {
     h1 {
-        font-size: 35px;
+        img {
+            height: auto;
+            width: 250px;
+        }
     }
 
     h2, h3, h4 {
@@ -301,10 +306,6 @@ body {
 }
 
 @media screen and (orientation: landscape) and (min-height: 550px) {
-    h1 {
-        font-size: 35px;
-    }
-
     h2, h3, h4 {
         font-size: 30px; 
     }
