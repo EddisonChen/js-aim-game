@@ -1,15 +1,5 @@
 "use strict";
 
-// main functions
-// have 3 circles on screen at any given time
-// on circle click, it disappears and a random one spawns
-// record each click 
-// accuracy = circle clicks/total clicks
-// score = 100 points per accurate click, minus 20 points per miss
-// time limit = 60secs
-// high score list?
-// mobile version?
-// step one: make clickable circles!
 var targets = document.querySelectorAll(".target");
 var targetsArr = Array.from(targets);
 var startButton = document.querySelector('button');
@@ -45,7 +35,7 @@ var playTargetHitSound = function playTargetHitSound() {
   targetHitSound.currentTime = 0; // resets audio to allow for consecutive clicks
 
   targetHitSound.play();
-}; // media query for js, senses if screen is wider than 1080px or taller than 550 px
+}; // media query for js, senses if screen is wider than 1080px or taller than 550px
 
 
 var screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
@@ -216,8 +206,3 @@ var resetClick = function resetClick() {
 };
 
 resetClick(); // look up how to make js more efficient
-// add sound effects or music?
-// more targets on desktop
-// change hideAll() to only apply hidden to mobile targets when under a certain screen width
-// once width requirements reached, apply hidden to all targets
-// coordinate the width requirement in css
