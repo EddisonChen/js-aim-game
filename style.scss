@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Space+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monofett&family=Nova+Flat&family=Space+Grotesk:wght@600&family=Space+Mono:wght@700&display=swap');
 
 * {
-    font-family: 'Space Grotesk';
+    font-family: 'Nova Flat';
     margin: 0;
     padding: 0;
     cursor: crosshair;
@@ -93,8 +93,8 @@ body {
   width: 90px;
   height: 40px;
   line-height: 40px;
-  font-size: 40px;
-  font-family: 'Bebas Neue', sans-serif;
+  font-size: 20px;
+  font-family: 'Nova Flat';
   background: linear-gradient(45deg, transparent 5%, #D198B7 5%);
   border: 0;
   color: #fff;
@@ -289,9 +289,16 @@ body {
             }
         
         .start, .resett {
-            font-size: 20px;
+            font-size: 30px;
             margin-bottom: 0;
         }
+
+        .button-49,
+        .button-49:after {
+            width: 150px;
+            height: 65px;
+            line-height: 65px;
+      }
     }
 }
 
@@ -327,7 +334,12 @@ body {
             font-size: 35px;
         }
     }
-  
+    .button-49,
+    .button-49:after {
+        width: 150px;
+        height: 65px;
+        line-height: 65px;
+  }
 }
 
 @media screen and (orientation: landscape) and (min-width: 1080px) {
@@ -346,6 +358,14 @@ body {
         font-size: 25px;
         margin-bottom: 15px;
     }
+
+    .button-49,
+    .button-49:after {
+        width: 135px;
+        height: 40px;
+        line-height: 40px;
+        margin-bottom: 0;
+  }
 
     .grid {
         display: flex;
@@ -388,6 +408,14 @@ body {
         margin-bottom: 15px;
     }
 
+    .button-49,
+    .button-49:after {
+        width: 150px;
+        height: 60px;
+        line-height: 60px;
+        margin-bottom: 0;
+  }
+
     .grid {
         display: flex;
         flex-direction: row;
@@ -418,19 +446,3 @@ body {
         }
     }
 }
-
-@media (min-width: 768px) {
-  .button-49,
-  .button-49:after {
-    width: 200px;
-    height: 86px;
-    line-height: 88px;
-  }
-}
-
-// .button-49,
-// .button-49:after {
-//     width: 100px;
-//     height: 40px;
-//     line-height: 30px;
-// }

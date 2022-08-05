@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600&family=Space+Mono:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Monofett&family=Nova+Flat&family=Space+Grotesk:wght@600&family=Space+Mono:wght@700&display=swap");
 * {
-  font-family: "Space Grotesk";
+  font-family: "Nova Flat";
   margin: 0;
   padding: 0;
   cursor: crosshair;
@@ -80,8 +80,8 @@ body .grid .grid-in-grid .desktop {
   width: 90px;
   height: 40px;
   line-height: 40px;
-  font-size: 40px;
-  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  font-family: "Nova Flat";
   background: linear-gradient(45deg, transparent 5%, #D198B7 5%);
   border: 0;
   color: #fff;
@@ -89,9 +89,7 @@ body .grid .grid-in-grid .desktop {
   box-shadow: 4px 0px 0px #779ecb;
   outline: transparent;
   position: relative;
-  -moz-user-select: none;
-   -ms-user-select: none;
-       user-select: none;
+  user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
@@ -112,129 +110,57 @@ body .grid .grid-in-grid .desktop {
   bottom: 0;
   background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #A7C7E7 5%);
   text-shadow: -3px -3px 0px #966fd6, 3px 3px 0px #A7C7E7;
-  -webkit-clip-path: var(--slice-0);
-          clip-path: var(--slice-0);
+  clip-path: var(--slice-0);
 }
 
 .button-49:hover:after {
-  -webkit-animation: 1s glitch;
-          animation: 1s glitch;
-  -webkit-animation-timing-function: steps(2, end);
-          animation-timing-function: steps(2, end);
-}
-
-@-webkit-keyframes glitch {
-  0% {
-    -webkit-clip-path: var(--slice-1);
-            clip-path: var(--slice-1);
-    transform: translate(-20px, -10px);
-  }
-  10% {
-    -webkit-clip-path: var(--slice-3);
-            clip-path: var(--slice-3);
-    transform: translate(10px, 10px);
-  }
-  20% {
-    -webkit-clip-path: var(--slice-1);
-            clip-path: var(--slice-1);
-    transform: translate(-10px, 10px);
-  }
-  30% {
-    -webkit-clip-path: var(--slice-3);
-            clip-path: var(--slice-3);
-    transform: translate(0px, 5px);
-  }
-  40% {
-    -webkit-clip-path: var(--slice-2);
-            clip-path: var(--slice-2);
-    transform: translate(-5px, 0px);
-  }
-  50% {
-    -webkit-clip-path: var(--slice-3);
-            clip-path: var(--slice-3);
-    transform: translate(5px, 0px);
-  }
-  60% {
-    -webkit-clip-path: var(--slice-4);
-            clip-path: var(--slice-4);
-    transform: translate(5px, 10px);
-  }
-  70% {
-    -webkit-clip-path: var(--slice-2);
-            clip-path: var(--slice-2);
-    transform: translate(-10px, 10px);
-  }
-  80% {
-    -webkit-clip-path: var(--slice-5);
-            clip-path: var(--slice-5);
-    transform: translate(20px, -10px);
-  }
-  90% {
-    -webkit-clip-path: var(--slice-1);
-            clip-path: var(--slice-1);
-    transform: translate(-10px, 0px);
-  }
-  100% {
-    -webkit-clip-path: var(--slice-1);
-            clip-path: var(--slice-1);
-    transform: translate(0);
-  }
+  animation: 1s glitch;
+  animation-timing-function: steps(2, end);
 }
 
 @keyframes glitch {
   0% {
-    -webkit-clip-path: var(--slice-1);
-            clip-path: var(--slice-1);
+    clip-path: var(--slice-1);
     transform: translate(-20px, -10px);
   }
   10% {
-    -webkit-clip-path: var(--slice-3);
-            clip-path: var(--slice-3);
+    clip-path: var(--slice-3);
     transform: translate(10px, 10px);
   }
   20% {
-    -webkit-clip-path: var(--slice-1);
-            clip-path: var(--slice-1);
+    clip-path: var(--slice-1);
     transform: translate(-10px, 10px);
   }
   30% {
-    -webkit-clip-path: var(--slice-3);
-            clip-path: var(--slice-3);
+    clip-path: var(--slice-3);
     transform: translate(0px, 5px);
   }
   40% {
-    -webkit-clip-path: var(--slice-2);
-            clip-path: var(--slice-2);
+    clip-path: var(--slice-2);
     transform: translate(-5px, 0px);
   }
   50% {
-    -webkit-clip-path: var(--slice-3);
-            clip-path: var(--slice-3);
+    clip-path: var(--slice-3);
     transform: translate(5px, 0px);
   }
   60% {
-    -webkit-clip-path: var(--slice-4);
-            clip-path: var(--slice-4);
+    clip-path: var(--slice-4);
     transform: translate(5px, 10px);
   }
   70% {
-    -webkit-clip-path: var(--slice-2);
-            clip-path: var(--slice-2);
+    clip-path: var(--slice-2);
     transform: translate(-10px, 10px);
   }
   80% {
-    -webkit-clip-path: var(--slice-5);
-            clip-path: var(--slice-5);
+    clip-path: var(--slice-5);
     transform: translate(20px, -10px);
   }
   90% {
-    -webkit-clip-path: var(--slice-1);
-            clip-path: var(--slice-1);
+    clip-path: var(--slice-1);
     transform: translate(-10px, 0px);
   }
   100% {
-    -webkit-clip-path: var(--slice-1);
-            clip-path: var(--slice-1);
+    clip-path: var(--slice-1);
     transform: translate(0);
   }
 }
@@ -328,8 +254,14 @@ body .grid .grid-in-grid .desktop {
     display: unset !important;
   }
   body .start, body .resett {
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 0;
+  }
+  body .button-49,
+body .button-49:after {
+    width: 150px;
+    height: 65px;
+    line-height: 65px;
   }
 }
 @media screen and (min-width: 700px) {
@@ -352,19 +284,37 @@ body .grid .grid-in-grid .desktop {
   body .start, body .resett {
     font-size: 35px;
   }
+
+  .button-49,
+.button-49:after {
+    width: 150px;
+    height: 65px;
+    line-height: 65px;
+  }
 }
 @media screen and (orientation: landscape) and (min-width: 1080px) {
   h1 img {
     height: auto;
     width: 250px;
   }
+
   h2, h3, h4 {
     font-size: 30px;
   }
+
   .start, .resett {
     font-size: 25px;
     margin-bottom: 15px;
   }
+
+  .button-49,
+.button-49:after {
+    width: 135px;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 0;
+  }
+
   .grid {
     display: flex;
     flex-direction: row;
@@ -394,10 +344,20 @@ body .grid .grid-in-grid .desktop {
   h2, h3, h4 {
     font-size: 30px;
   }
+
   .start, .resett {
     font-size: 25px;
     margin-bottom: 15px;
   }
+
+  .button-49,
+.button-49:after {
+    width: 150px;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 0;
+  }
+
   .grid {
     display: flex;
     flex-direction: row;
@@ -423,11 +383,3 @@ body .grid .grid-in-grid .desktop {
     display: unset !important;
   }
 }
-@media (min-width: 768px) {
-  .button-49,
-.button-49:after {
-    width: 200px;
-    height: 86px;
-    line-height: 88px;
-  }
-}/*# sourceMappingURL=style.css.map */

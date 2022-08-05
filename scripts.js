@@ -22,6 +22,28 @@ const mobileTargets = document.querySelectorAll(".mobile");
 const mobileTargetsArr = Array.from(mobileTargets);
 const desktopTargets = document.querySelectorAll(".desktop");
 const desktopTargetsArr = Array.from(desktopTargets);
+const clickSound = new Audio("./soundfx/trimmedallshots.mp3");
+const resetClickSound = new Audio ("./soundfx/trimmedresetclick.mp3");
+const startClickSound = new Audio("./soundfx/trimmedstartsound.mp3");
+const targetHitSound = new Audio("./soundfx/trimmedtargethit.mp3");
+
+// audio play functions on click
+const playClickSound =() => {
+    clickSound.currentTime = 0; // resets audio to allow for consecutive clicks
+    clickSound.play();
+}
+const playResetClickSound =() => {
+    resetClickSound.play();
+}
+
+const playStartClickSound =() => {
+    startClickSound.play();
+}
+
+const playTargetHitSound =() => {
+    targetHitSound.currentTime = 0; // resets audio to allow for consecutive clicks
+    targetHitSound.play();
+}
 
 // media query for js, senses if screen is wider than 1080px or taller than 550 px
 const screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
@@ -69,7 +91,7 @@ const hideAll = () => {
         })
     }
 }
-// hideAll();
+hideAll();
 
 // selects 3 random spheres to be visible on start click
 const showRandomSpheres = () => {
@@ -92,6 +114,7 @@ const showRandomSpheres = () => {
 const startGame = () => {
     startButton.addEventListener("click", () => {
         time = 30;
+        playStartClickSound()
         hardReset();
         hideAll();
         showRandomSpheres();
@@ -138,6 +161,7 @@ const totalClicks = () => {
         }
         accuracyUpdater();
         scoreUpdater();
+        playClickSound();
     });
 }
 totalClicks();
@@ -146,6 +170,7 @@ totalClicks();
 const targetClick = () => {
         targetsArr.forEach((target) => {
             target.addEventListener("click", () => {
+                playTargetHitSound();
                 targetAppear();
                 targetVanish(target);
                 targetClickCounter ++;
@@ -179,6 +204,7 @@ const hardReset = () => {
 // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres
 const resetClick = () => {
     resett.addEventListener("click", () => {
+        playResetClickSound();
         hardReset();
         hideAll();
         startButton.disabled = false;

@@ -21,7 +21,32 @@ var timer = document.querySelector('.timer');
 var mobileTargets = document.querySelectorAll(".mobile");
 var mobileTargetsArr = Array.from(mobileTargets);
 var desktopTargets = document.querySelectorAll(".desktop");
-var desktopTargetsArr = Array.from(desktopTargets); // media query for js, senses if screen is wider than 1080px or taller than 550 px
+var desktopTargetsArr = Array.from(desktopTargets);
+var clickSound = new Audio("./soundfx/trimmedallshots.mp3");
+var resetClickSound = new Audio("./soundfx/trimmedresetclick.mp3");
+var startClickSound = new Audio("./soundfx/trimmedstartsound.mp3");
+var targetHitSound = new Audio("./soundfx/trimmedtargethit.mp3"); // audio play functions on click
+
+var playClickSound = function playClickSound() {
+  clickSound.currentTime = 0; // resets audio to allow for consecutive clicks
+
+  clickSound.play();
+};
+
+var playResetClickSound = function playResetClickSound() {
+  resetClickSound.play();
+};
+
+var playStartClickSound = function playStartClickSound() {
+  startClickSound.play();
+};
+
+var playTargetHitSound = function playTargetHitSound() {
+  targetHitSound.currentTime = 0; // resets audio to allow for consecutive clicks
+
+  targetHitSound.play();
+}; // media query for js, senses if screen is wider than 1080px or taller than 550 px
+
 
 var screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
 var screenHeight = window.matchMedia('(orientation: landscape) and (min-height: 550px)');
@@ -63,9 +88,9 @@ var hideAll = function hideAll() {
       desktopTarget.classList.remove("hidden");
     });
   }
-}; // hideAll();
-// selects 3 random spheres to be visible on start click
+};
 
+hideAll(); // selects 3 random spheres to be visible on start click
 
 var showRandomSpheres = function showRandomSpheres() {
   var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
@@ -90,6 +115,7 @@ var showRandomSpheres = function showRandomSpheres() {
 var startGame = function startGame() {
   startButton.addEventListener("click", function () {
     time = 30;
+    playStartClickSound();
     hardReset();
     hideAll();
     showRandomSpheres();
@@ -138,6 +164,7 @@ var totalClicks = function totalClicks() {
 
     accuracyUpdater();
     scoreUpdater();
+    playClickSound();
   });
 };
 
@@ -146,6 +173,7 @@ totalClicks(); // disappears the target clicked, appears another random target, 
 var targetClick = function targetClick() {
   targetsArr.forEach(function (target) {
     target.addEventListener("click", function () {
+      playTargetHitSound();
       targetAppear();
       targetVanish(target);
       targetClickCounter++;
@@ -179,6 +207,7 @@ var hardReset = function hardReset() {
 
 var resetClick = function resetClick() {
   resett.addEventListener("click", function () {
+    playResetClickSound();
     hardReset();
     hideAll();
     startButton.disabled = false;
