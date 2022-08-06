@@ -138,21 +138,22 @@ const showEndMessageButton = () => {
 // starts game, resets score, accuracy, hides all spheres, shows 3 random spheres
 const startGame = () => {
     startButton.addEventListener("click", () => {
-        time = 30;
+        hideEndMessageButton();
         playStartClickSound()
         hardReset();
         hideAll();
         showRandomSpheres();
+        time = 30;
         const timeStart = setInterval(() => { // starts timer
             if (time >= 1 && time <= 30) {
                 timer.innerHTML = `${time} secs`;
                 time --;
             } else if (time = 1) { // resets timer 
                 clearInterval(timeStart);
-                time = 30;
-                timer.innerHTML = `${time} secs`
+                showEndMessageButton()
+                time = 31;
+                timer.innerHTML = `${time - 1} secs`
                 hideAll();
-                showEndMessageButton();
             }
         }, 1000);
         startButton.disabled = true;
@@ -232,14 +233,16 @@ const hardReset = () => {
 // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres
 const resetClick = () => {
     resett.addEventListener("click", () => {
+        time = 31;
         hideEndMessageButton();
         playResetClickSound();
         hardReset();
         hideAll();
         startButton.disabled = false;
-        time = 31;
     });
 }
 resetClick();
 
 // figure out how to get the endmessage text to stop extending the page.
+// bug with repeated pressing of start and reset
+// setinterval timer speeds up

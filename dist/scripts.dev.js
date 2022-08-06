@@ -137,11 +137,12 @@ var showEndMessageButton = function showEndMessageButton() {
 
 var startGame = function startGame() {
   startButton.addEventListener("click", function () {
-    time = 30;
+    hideEndMessageButton();
     playStartClickSound();
     hardReset();
     hideAll();
     showRandomSpheres();
+    time = 30;
     var timeStart = setInterval(function () {
       // starts timer
       if (time >= 1 && time <= 30) {
@@ -150,10 +151,10 @@ var startGame = function startGame() {
       } else if (time = 1) {
         // resets timer 
         clearInterval(timeStart);
-        time = 30;
-        timer.innerHTML = "".concat(time, " secs");
-        hideAll();
         showEndMessageButton();
+        time = 31;
+        timer.innerHTML = "".concat(time - 1, " secs");
+        hideAll();
       }
     }, 1000);
     startButton.disabled = true;
@@ -234,13 +235,15 @@ var hardReset = function hardReset() {
 
 var resetClick = function resetClick() {
   resett.addEventListener("click", function () {
+    time = 31;
     hideEndMessageButton();
     playResetClickSound();
     hardReset();
     hideAll();
     startButton.disabled = false;
-    time = 31;
   });
 };
 
 resetClick(); // figure out how to get the endmessage text to stop extending the page.
+// bug with repeated pressing of start and reset
+// setinterval timer speeds up
