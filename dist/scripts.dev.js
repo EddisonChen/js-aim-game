@@ -118,16 +118,14 @@ var copyEndMessage = function copyEndMessage() {
 
 
 var showEndMessageButton = function showEndMessageButton() {
-  scoreValue.setAttribute("href", "https://mrmanlyish.github.io/js-aim-game/");
-
   if (scoreValue > 15000) {
-    endMessage.innerHTML = "Absolutely incredible. ".concat(scoreValue, " points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends!");
+    endMessage.innerHTML = "Absolutely incredible. ".concat(scoreValue, " points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends!\n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
   } else if (scoreValue > 10000 && scoreValue < 15000) {
-    endMessage.innerHTML = "Nice! Your score was ".concat(scoreValue, "! Tell your friends just to brag! Click to share with your friends!");
+    endMessage.innerHTML = "Nice! Your score was ".concat(scoreValue, "! Tell your friends just to brag! Click to share with your friends!\n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
   } else if (scoreValue < 10000 && scoreValue > 5000) {
-    endMessage.innerHTML = "Be better. ".concat(scoreValue, " points? I expect more from you. Click to share with your friends!");
+    endMessage.innerHTML = "Be better. ".concat(scoreValue, " points? I expect more from you. Click to share with your friends!\n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
   } else if (scoreValue < 5000) {
-    endMessage.innerHTML = "With a score of ".concat(scoreValue, ", you must have the slowest hands in town. I'm disappointed! Click to share with your friends.");
+    endMessage.innerHTML = "With a score of ".concat(scoreValue, ", you must have the slowest hands in town. I'm disappointed! Click to share with your friends. \n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
   }
 
   endMessage.addEventListener("click", function () {
@@ -245,4 +243,4 @@ var resetClick = function resetClick() {
   });
 };
 
-resetClick();
+resetClick(); // figure out how to get the endmessage text to stop extending the page.
