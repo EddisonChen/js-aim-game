@@ -68,7 +68,7 @@ body .grid .grid-in-grid .target {
   border-radius: 100%;
   height: 75px;
   width: 75px;
-  background: radial-gradient(circle at 30% 30%, #5cabff, #8e7faa);
+  background: radial-gradient(circle at 35% 35%, #85A1F2, #9063CD);
   margin: auto;
 }
 body .grid .grid-in-grid .desktop {
@@ -108,8 +108,8 @@ body .grid .grid-in-grid .desktop {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #A7C7E7 5%);
-  text-shadow: -3px -3px 0px #966fd6, 3px 3px 0px #A7C7E7;
+  background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #89f5ad 5%);
+  text-shadow: -3px -3px 0px #966fd6, 3px 3px 0px #78ce78;
   clip-path: var(--slice-0);
 }
 
@@ -125,14 +125,14 @@ button[disabled] {
 
 h2, h3, h4 {
   text-align: center;
-  color: #826d8c;
+  color: white;
   padding: 0px 15px 0px 15px;
-  margin-top: 5px;
+  margin: 0px;
+  border: 3px #f8f8f8 solid;
 }
 
 .gradient-border {
   --borderWidth: 3px;
-  background: #ECECEC;
   position: relative;
   border-radius: var(--borderWidth);
 }
@@ -144,7 +144,7 @@ h2, h3, h4 {
   left: calc(-1 * var(--borderWidth));
   height: calc(100% + var(--borderWidth) * 2);
   width: calc(100% + var(--borderWidth) * 2);
-  background: linear-gradient(60deg, #ffb347, #FF8776, #FF6962, #966fd6, #779ecb, #5BC8B2, #BCE3B9, #9BD087);
+  background: linear-gradient(60deg, #ffb347, #ffb347, #FF6962, #966fd6, #779ecb, #5BC8B2, #BCE3B9, #9BD087);
   border-radius: calc(2 * var(--borderWidth));
   z-index: -1;
   animation: animatedgradient 3s ease alternate infinite;
@@ -223,7 +223,7 @@ h2, h3, h4 {
   }
   body .infobar h2, body .infobar h3, body .infobar h4 {
     font-size: 17px;
-    margin: 4px;
+    margin: 0px;
     text-align: left;
     padding: none;
   }
@@ -245,7 +245,7 @@ h2, h3, h4 {
     border-radius: 100%;
     height: 75px;
     width: 75px;
-    background: radial-gradient(circle at 100px 100px, #5cabff, #8e7faa);
+    background: radial-gradient(circle at 30% 30%, #5cabff, #8e7faa);
   }
   body .grid .grid-in-grid .desktop {
     display: none;
@@ -297,7 +297,7 @@ h2, h3, h4 {
     border-radius: 100%;
     height: 75px;
     width: 75px;
-    background: radial-gradient(circle at 100px 100px, #5cabff, #8e7faa);
+    background: radial-gradient(circle at 30% 30%, #5cabff, #8e7faa);
   }
   body .grid .grid-in-grid .desktop {
     display: unset !important;
@@ -384,7 +384,7 @@ body .button-49:after {
     border-radius: 100%;
     height: 75px;
     width: 75px;
-    background: radial-gradient(circle at 100px 100px, #5cabff, #8e7faa);
+    background: radial-gradient(circle at 30% 30%, #5cabff, #8e7faa);
     margin: auto;
   }
   .grid .grid-in-grid .desktop {
@@ -423,13 +423,6 @@ body .button-49:after {
     width: 90%;
     height: 90%;
     gap: 15%;
-  }
-  .grid .grid-in-grid .target {
-    border-radius: 100%;
-    height: 75px;
-    width: 75px;
-    background: radial-gradient(circle at 100px 100px, #5cabff, #8e7faa);
-    margin: auto;
   }
   .grid .grid-in-grid .desktop {
     display: unset !important;
