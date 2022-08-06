@@ -105,6 +105,8 @@ const hideEndMessageButton = () => {
     endMessage.classList.add("gone");
 }
 
+hideEndMessageButton();
+
 // click to copy end message
 const copyEndMessage = () => {
     navigator.clipboard.writeText(endMessage.innerHTML);

@@ -106,8 +106,9 @@ var showRandomSpheres = function showRandomSpheres() {
 var hideEndMessageButton = function hideEndMessageButton() {
   endMessage.innerHTML = "";
   endMessage.classList.add("gone");
-}; // click to copy end message
+};
 
+hideEndMessageButton(); // click to copy end message
 
 var copyEndMessage = function copyEndMessage() {
   navigator.clipboard.writeText(endMessage.innerHTML);
