@@ -8,6 +8,7 @@ var accuracy = document.querySelector('.accuracy');
 var score = document.querySelector('.score');
 var resett = document.querySelector(".resett");
 var timer = document.querySelector('.timer');
+var endMessage = document.querySelector(".end-message");
 var mobileTargets = document.querySelectorAll(".mobile");
 var mobileTargetsArr = Array.from(mobileTargets);
 var desktopTargets = document.querySelectorAll(".desktop");
@@ -15,7 +16,8 @@ var desktopTargetsArr = Array.from(desktopTargets);
 var clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
 var resetClickSound = new Audio("./soundfx/loweredtrimmedresetclick.mp3");
 var startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
-var targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3"); // audio play functions on click
+var targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3"); // const siteLink = document.querySelector("a");
+// audio play functions on click
 
 var playClickSound = function playClickSound() {
   clickSound.currentTime = 0; // resets audio to allow for consecutive clicks
@@ -78,9 +80,9 @@ var hideAll = function hideAll() {
       desktopTarget.classList.remove("hidden");
     });
   }
-}; // hideAll();
-// selects 3 random spheres to be visible on start click
+};
 
+hideAll(); // selects 3 random spheres to be visible on start click
 
 var showRandomSpheres = function showRandomSpheres() {
   var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
@@ -99,6 +101,39 @@ var showRandomSpheres = function showRandomSpheres() {
   hiddenTargetsArr[ranNumArr[0]].classList.add("visible"), hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
   hiddenTargetsArr[ranNumArr[1]].classList.add("visible"), hiddenTargetsArr[ranNumArr[1]].classList.remove("hidden");
   hiddenTargetsArr[ranNumArr[2]].classList.add("visible"), hiddenTargetsArr[ranNumArr[2]].classList.remove("hidden");
+}; // hide end message
+
+
+var hideEndMessageButton = function hideEndMessageButton() {
+  endMessage.innerHTML = "";
+  endMessage.classList.add("gone");
+};
+
+hideEndMessageButton(); // click to copy end message
+
+var copyEndMessage = function copyEndMessage() {
+  navigator.clipboard.writeText(endMessage.innerHTML);
+  swal("Copied to clipboard!");
+}; // show end message
+
+
+var showEndMessageButton = function showEndMessageButton() {
+  scoreValue.setAttribute("href", "https://mrmanlyish.github.io/js-aim-game/");
+
+  if (scoreValue > 15000) {
+    endMessage.innerHTML = "Absolutely incredible. ".concat(scoreValue, " points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends!");
+  } else if (scoreValue > 10000 && scoreValue < 15000) {
+    endMessage.innerHTML = "Nice! Your score was ".concat(scoreValue, "! Tell your friends just to brag! Click to share with your friends!");
+  } else if (scoreValue < 10000 && scoreValue > 5000) {
+    endMessage.innerHTML = "Be better. ".concat(scoreValue, " points? I expect more from you. Click to share with your friends!");
+  } else if (scoreValue < 5000) {
+    endMessage.innerHTML = "With a score of ".concat(scoreValue, ", you must have the slowest hands in town. I'm disappointed! Click to share with your friends.");
+  }
+
+  endMessage.addEventListener("click", function () {
+    copyEndMessage();
+  });
+  endMessage.classList.remove("gone");
 }; // starts game, resets score, accuracy, hides all spheres, shows 3 random spheres
 
 
@@ -120,6 +155,7 @@ var startGame = function startGame() {
         time = 30;
         timer.innerHTML = "".concat(time, " secs");
         hideAll();
+        showEndMessageButton();
       }
     }, 1000);
     startButton.disabled = true;
@@ -182,8 +218,11 @@ var accuracyUpdater = function accuracyUpdater() {
 }; // updates score with each click
 
 
+var scoreValue = 0;
+
 var scoreUpdater = function scoreUpdater() {
-  score.innerHTML = "score: ".concat(targetClickCounter * 120 - clickCounter * 20);
+  scoreValue = targetClickCounter * 120 - clickCounter * 20;
+  score.innerHTML = "score: ".concat(scoreValue);
 }; // clears score, accuracy, clickCounter, and targetClickCounter
 
 
@@ -197,6 +236,7 @@ var hardReset = function hardReset() {
 
 var resetClick = function resetClick() {
   resett.addEventListener("click", function () {
+    hideEndMessageButton();
     playResetClickSound();
     hardReset();
     hideAll();
@@ -205,5 +245,4 @@ var resetClick = function resetClick() {
   });
 };
 
-resetClick(); // look up how to make js more efficient
-// add multitouch??
+resetClick();

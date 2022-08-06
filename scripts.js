@@ -6,6 +6,7 @@ const accuracy = document.querySelector('.accuracy');
 const score = document.querySelector('.score');
 const resett = document.querySelector(`.resett`);
 const timer = document.querySelector('.timer');
+const endMessage = document.querySelector(".end-message");
 const mobileTargets = document.querySelectorAll(".mobile");
 const mobileTargetsArr = Array.from(mobileTargets);
 const desktopTargets = document.querySelectorAll(".desktop");
@@ -14,6 +15,7 @@ const clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
 const resetClickSound = new Audio ("./soundfx/loweredtrimmedresetclick.mp3");
 const startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
 const targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3");
+// const siteLink = document.querySelector("a");
 
 // audio play functions on click
 const playClickSound =() => {
@@ -79,7 +81,7 @@ const hideAll = () => {
         })
     }
 }
-// hideAll();
+hideAll();
 
 // selects 3 random spheres to be visible on start click
 const showRandomSpheres = () => {
@@ -96,6 +98,38 @@ const showRandomSpheres = () => {
     hiddenTargetsArr[ranNumArr[0]].classList.add("visible"), hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
     hiddenTargetsArr[ranNumArr[1]].classList.add("visible"), hiddenTargetsArr[ranNumArr[1]].classList.remove("hidden");
     hiddenTargetsArr[ranNumArr[2]].classList.add("visible"), hiddenTargetsArr[ranNumArr[2]].classList.remove("hidden");
+}
+
+// hide end message
+const hideEndMessageButton = () => {
+    endMessage.innerHTML = "";
+    endMessage.classList.add("gone");
+}
+hideEndMessageButton();
+
+// click to copy end message
+const copyEndMessage = () => {
+    navigator.clipboard.writeText(endMessage.innerHTML);
+    swal("Copied to clipboard!")
+}
+
+// show end message
+const showEndMessageButton = () => {
+    scoreValue.setAttribute("href", "https://mrmanlyish.github.io/js-aim-game/");
+    if (scoreValue > 15000) {
+        endMessage.innerHTML = `Absolutely incredible. ${scoreValue} points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends!`;
+    } else if (scoreValue > 10000 && scoreValue< 15000) {
+        endMessage.innerHTML = `Nice! Your score was ${scoreValue}! Tell your friends just to brag! Click to share with your friends!`;
+    } else if (scoreValue < 10000 && scoreValue > 5000) {
+        endMessage.innerHTML = `Be better. ${scoreValue} points? I expect more from you. Click to share with your friends!`;
+    } else if (scoreValue < 5000) {
+        endMessage.innerHTML = `With a score of ${scoreValue}, you must have the slowest hands in town. I'm disappointed! Click to share with your friends.`;
+    }
+    endMessage.addEventListener("click", () => {
+        copyEndMessage();
+    })
+    
+    endMessage.classList.remove("gone");
 }
 
 // starts game, resets score, accuracy, hides all spheres, shows 3 random spheres
@@ -115,6 +149,7 @@ const startGame = () => {
                 time = 30;
                 timer.innerHTML = `${time} secs`
                 hideAll();
+                showEndMessageButton();
             }
         }, 1000);
         startButton.disabled = true;
@@ -177,8 +212,10 @@ const accuracyUpdater = () => {
 }
 
 // updates score with each click
+let scoreValue = 0;
 const scoreUpdater = () => {
-    score.innerHTML = `score: ${targetClickCounter*120 - clickCounter*20}`;
+    scoreValue = targetClickCounter*120 - clickCounter*20;
+    score.innerHTML = `score: ${scoreValue}`;
 }
 
 // clears score, accuracy, clickCounter, and targetClickCounter
@@ -192,6 +229,7 @@ const hardReset = () => {
 // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres
 const resetClick = () => {
     resett.addEventListener("click", () => {
+        hideEndMessageButton();
         playResetClickSound();
         hardReset();
         hideAll();
@@ -200,7 +238,3 @@ const resetClick = () => {
     });
 }
 resetClick();
-
-// look up how to make js more efficient
-
-// add multitouch??

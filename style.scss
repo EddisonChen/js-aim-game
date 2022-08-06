@@ -9,6 +9,20 @@
     font-size: 17px;
 }
 
+.gone {
+    display: none;
+}
+
+.end-message {
+    // border: 2px solid black;
+    margin: 10px 20px 10px 20px;
+    font-family: Space Grotesk;
+    // font-family: Monofett;
+    font-size: 20px;
+    color:#424242;
+    text-align: center;
+}
+
 .visible {
     visibility: visible;
 }
@@ -25,6 +39,7 @@ body {
     grid-template-rows: 1fr 1fr 15fr 1fr;
     background-image: url("./pics/pastgrad.jpg");
     background-size: 2160px;
+    // border: 2px solid green;
 
     h1 {
         margin-top: 10px;
