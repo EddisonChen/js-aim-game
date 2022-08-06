@@ -16,8 +16,7 @@ var desktopTargetsArr = Array.from(desktopTargets);
 var clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
 var resetClickSound = new Audio("./soundfx/loweredtrimmedresetclick.mp3");
 var startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
-var targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3"); // const siteLink = document.querySelector("a");
-// audio play functions on click
+var targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3"); // audio play functions on click
 
 var playClickSound = function playClickSound() {
   clickSound.currentTime = 0; // resets audio to allow for consecutive clicks
@@ -132,11 +131,18 @@ var showEndMessageButton = function showEndMessageButton() {
     copyEndMessage();
   });
   endMessage.classList.remove("gone");
+}; // disable reset for 1.5 secs
+
+
+var disableReset = function disableReset() {
+  resett.disabled = true;
+  setTimeout('resett.disabled=false', 1200);
 }; // starts game, resets score, accuracy, hides all spheres, shows 3 random spheres
 
 
 var startGame = function startGame() {
   startButton.addEventListener("click", function () {
+    disableReset();
     hideEndMessageButton();
     playStartClickSound();
     hardReset();
@@ -190,6 +196,7 @@ var totalClicks = function totalClicks() {
     accuracyUpdater();
     scoreUpdater();
     playClickSound();
+    hideEndMessageButton();
   });
 };
 
@@ -236,14 +243,16 @@ var hardReset = function hardReset() {
 var resetClick = function resetClick() {
   resett.addEventListener("click", function () {
     time = 31;
-    hideEndMessageButton();
     playResetClickSound();
     hardReset();
     hideAll();
-    startButton.disabled = false;
+    setTimeout('startButton.disabled = false', 1200);
+    hideEndMessageButton();
   });
 };
 
 resetClick(); // figure out how to get the endmessage text to stop extending the page.
 // bug with repeated pressing of start and reset
 // setinterval timer speeds up
+// work around is to wait 2 seconds before start button is reenabled after pressing reset?
+// end message text shows up on reset press
