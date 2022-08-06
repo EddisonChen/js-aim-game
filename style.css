@@ -40,7 +40,7 @@ body .infobar {
   justify-content: space-around;
   color: #3D426B;
 }
-body .start-div {
+body .start-.target {
   text-align: center;
   width: 100%;
 }
@@ -125,13 +125,14 @@ button[disabled] {
 
 h2, h3, h4 {
   text-align: center;
-  color: white;
+  color: #826d8c;
   padding: 0px 15px 0px 15px;
   margin-top: 5px;
 }
 
 .gradient-border {
   --borderWidth: 3px;
+  background: #ECECEC;
   position: relative;
   border-radius: var(--borderWidth);
 }
