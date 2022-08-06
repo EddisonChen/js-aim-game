@@ -104,7 +104,6 @@ const hideEndMessageButton = () => {
     endMessage.innerHTML = "";
     endMessage.classList.add("gone");
 }
-hideEndMessageButton();
 
 // click to copy end message
 const copyEndMessage = () => {
@@ -130,7 +129,6 @@ const showEndMessageButton = () => {
     endMessage.addEventListener("click", () => {
         copyEndMessage();
     })
-    
     endMessage.classList.remove("gone");
 }
 
@@ -156,6 +154,7 @@ const startGame = () => {
                 time --;
             } else if (time = 1) { // resets timer 
                 clearInterval(timeStart);
+                console.log(time);
                 showEndMessageButton()
                 time = 31;
                 timer.innerHTML = `${time - 1} secs`
@@ -242,10 +241,10 @@ const resetClick = () => {
     resett.addEventListener("click", () => {
         time = 31;
         playResetClickSound();
+        hideEndMessageButton();
         hardReset();
         hideAll();
         setTimeout('startButton.disabled = false', 1200);
-        hideEndMessageButton();
     });
 }
 resetClick();
@@ -254,4 +253,4 @@ resetClick();
 // bug with repeated pressing of start and reset
 // setinterval timer speeds up
 // work around is to wait 2 seconds before start button is reenabled after pressing reset?
-// end message text shows up on reset press
+// end message text shows up on reset press, when reset is clicked, time = 1
