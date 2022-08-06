@@ -15,7 +15,6 @@ const clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
 const resetClickSound = new Audio ("./soundfx/loweredtrimmedresetclick.mp3");
 const startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
 const targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3");
-// const siteLink = document.querySelector("a");
 
 // audio play functions on click
 const playClickSound =() => {
@@ -135,9 +134,16 @@ const showEndMessageButton = () => {
     endMessage.classList.remove("gone");
 }
 
+// disable reset for 1.5 secs
+const disableReset = () => {
+    resett.disabled = true;
+    setTimeout('resett.disabled=false', 1200);
+}
+
 // starts game, resets score, accuracy, hides all spheres, shows 3 random spheres
 const startGame = () => {
     startButton.addEventListener("click", () => {
+        disableReset();
         hideEndMessageButton();
         playStartClickSound()
         hardReset();
@@ -189,6 +195,7 @@ const totalClicks = () => {
         accuracyUpdater();
         scoreUpdater();
         playClickSound();
+        hideEndMessageButton();
     });
 }
 totalClicks();
@@ -234,11 +241,11 @@ const hardReset = () => {
 const resetClick = () => {
     resett.addEventListener("click", () => {
         time = 31;
-        hideEndMessageButton();
         playResetClickSound();
         hardReset();
         hideAll();
-        startButton.disabled = false;
+        setTimeout('startButton.disabled = false', 1200);
+        hideEndMessageButton();
     });
 }
 resetClick();
@@ -246,3 +253,5 @@ resetClick();
 // figure out how to get the endmessage text to stop extending the page.
 // bug with repeated pressing of start and reset
 // setinterval timer speeds up
+// work around is to wait 2 seconds before start button is reenabled after pressing reset?
+// end message text shows up on reset press
