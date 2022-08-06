@@ -79,7 +79,7 @@ const hideAll = () => {
         })
     }
 }
-hideAll();
+// hideAll();
 
 // selects 3 random spheres to be visible on start click
 const showRandomSpheres = () => {
@@ -203,3 +203,4 @@ resetClick();
 
 // look up how to make js more efficient
 
+// add multitouch??

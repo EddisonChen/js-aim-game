@@ -78,9 +78,9 @@ var hideAll = function hideAll() {
       desktopTarget.classList.remove("hidden");
     });
   }
-};
+}; // hideAll();
+// selects 3 random spheres to be visible on start click
 
-hideAll(); // selects 3 random spheres to be visible on start click
 
 var showRandomSpheres = function showRandomSpheres() {
   var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
@@ -206,3 +206,4 @@ var resetClick = function resetClick() {
 };
 
 resetClick(); // look up how to make js more efficient
+// add multitouch??

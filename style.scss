@@ -137,6 +137,47 @@ button[disabled] {
     opacity: 50%;
 }
 
+h2, h3, h4 {
+    text-align: center;
+    color: white;
+    padding: 0px 15px 0px 15px;
+    // margin: 5px 0px 5px 0px;
+    // width: 100%;
+}
+
+.gradient-border {
+    --borderWidth: 3px;
+    // background: white;
+    position: relative;
+    border-radius: var(--borderWidth);
+  }
+  .gradient-border:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    // background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+    background: linear-gradient(60deg, #ffb347, #FF8776, #FF6962, #966fd6, #779ecb, #5BC8B2,  #BCE3B9, #9BD087);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease alternate infinite;
+    background-size: 200% 200%;
+  }
+  
+  
+  @keyframes animatedgradient {
+      0% {
+          background-position: 0% 50%;
+      }
+      50% {
+          background-position: 100% 50%;
+      }
+      100% {
+          background-position: 0% 50%;
+      }
+  }
 @keyframes glitch {
   0% {
     clip-path: var(--slice-1);
@@ -198,8 +239,10 @@ button[disabled] {
             grid-template-rows: 1fr 1fr 1fr;
 
             h2, h3, h4 {
-                font-size: 20px;
-                margin-left: 10px;
+                font-size: 17px;
+                margin: 4px;
+                text-align: left;
+                padding: none;
             }
         }
             .grid {
@@ -258,10 +301,13 @@ button[disabled] {
             display: grid;
             grid-template-columns: 1fr;
             grid-template-rows: 1fr 1fr 1fr;
+            justify-content: center;
+            align-items: center;
 
             h2, h3, h4 {
                 font-size: 20px;
                 margin-left: 10px;
+                margin-right: 10px;
             }
         }
             .grid {
@@ -332,7 +378,9 @@ button[disabled] {
         }
     
         h2, h3, h4 {
-            font-size: 35px; 
+            font-size: 35px;
+            margin-left: 5px;
+            margin-right: 5px;
         }
     
         .start, .resett {
@@ -357,6 +405,7 @@ button[disabled] {
 
     h2, h3, h4 {
         font-size: 30px; 
+        // width: 100%;
     }
 
     .start, .resett {
@@ -405,7 +454,8 @@ button[disabled] {
 
 @media screen and (orientation: landscape) and (min-height: 550px) {
     h2, h3, h4 {
-        font-size: 30px; 
+        font-size: 30px;
+        width: 100%;
     }
 
     .start, .resett {
@@ -451,3 +501,5 @@ button[disabled] {
         }
     }
 }
+
+  
