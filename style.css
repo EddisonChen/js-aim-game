@@ -68,7 +68,7 @@ body .grid .grid-in-grid .target {
   border-radius: 100%;
   height: 75px;
   width: 75px;
-  background: radial-gradient(circle at 100px 100px, #5cabff, #8e7faa);
+  background: radial-gradient(circle at 30% 30%, #5cabff, #8e7faa);
   margin: auto;
 }
 body .grid .grid-in-grid .desktop {
