@@ -95,7 +95,7 @@ body {
   line-height: 40px;
   font-size: 20px;
   font-family: 'Nova Flat';
-  background: linear-gradient(45deg, transparent 5%, #D198B7 5%);
+  background: linear-gradient(45deg, transparent 5%, #C3B1E1 5%);
   border: 0;
   color: #fff;
   letter-spacing: 3px;
@@ -123,7 +123,7 @@ body {
   right: 0;
   bottom: 0;
   background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #89f5ad 5%);
-  text-shadow: -3px -3px 0px #966fd6, 3px 3px 0px #78ce78;
+  text-shadow: -3px -3px 0px #B1A2CA, 3px 3px 0px #78ce78;
   clip-path: var(--slice-0);
 }
 
@@ -162,7 +162,7 @@ h2, h3, h4 {
     height: calc(100% + var(--borderWidth) * 2);
     width: calc(100% + var(--borderWidth) * 2);
     // background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-    background: linear-gradient(60deg, #ffb347, #ffb347, #FF6962, #966fd6, #779ecb, #5BC8B2,  #BCE3B9, #9BD087);
+    background: linear-gradient(60deg, #FFCCCB, #D198B7, #dea5a4, #966fd6, #779ecb, #A7C7E7,  #89CFF0, #ADD8E6);
     border-radius: calc(2 * var(--borderWidth));
     z-index: -1;
     animation: animatedgradient 3s ease alternate infinite;
