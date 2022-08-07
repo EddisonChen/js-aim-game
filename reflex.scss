@@ -1,0 +1,231 @@
+// navy blue/gold themed
+
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Monofett&family=Nova+Flat&family=Space+Grotesk:wght@600&family=Space+Mono:wght@700&display=swap');
+
+* {
+    font-family: 'Nova Flat';
+    margin: 0;
+    padding: 0;
+    cursor: crosshair;
+    font-size: 17px;
+    // border: 1px solid black;
+
+    body {
+        height: 100vh;
+        width: 100vw;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 2fr 13fr 1fr;
+        background-image: url("./pics/reflexvertback.jpg");
+        background-size: 500px;
+
+        h1 {
+            text-align: center;
+            margin-top: 10px;
+
+            img {
+                border-radius: 55px;
+                width: 150px;
+                height: auto;
+            }
+        }
+
+        .info-bar {
+            color: white;
+            // border: 2px solid white;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+
+            h2, h3, h4 {
+                padding: 0px 15px 0px 15px;
+                border: 3px rgb(248, 248, 248) solid;
+                margin-top: 2px;
+            }
+
+            .gradient-border {
+                --borderWidth: 3px;
+                // background: #ECECEC;
+                position: relative;
+                border-radius: var(--borderWidth);
+              }
+              .gradient-border:after {
+                content: '';
+                position: absolute;
+                top: calc(-1 * var(--borderWidth));
+                left: calc(-1 * var(--borderWidth));
+                height: calc(100% + var(--borderWidth) * 2);
+                width: calc(100% + var(--borderWidth) * 2);
+                // background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+                background: linear-gradient(60deg, #FFCCCB, #D198B7, #dea5a4, #966fd6, #779ecb, #A7C7E7,  #89CFF0, #ADD8E6);
+                border-radius: calc(2 * var(--borderWidth));
+                z-index: -1;
+                animation: animatedgradient 5s ease alternate infinite;
+                background-size: 200% 200%;
+              }
+              
+              @keyframes animatedgradient {
+                  0% {
+                      background-position: 0% 50%;
+                  }
+                  50% {
+                      background-position: 100% 50%;
+                  }
+                  100% {
+                      background-position: 0% 50%;
+                  }
+              }
+            @keyframes glitch {
+              0% {
+                clip-path: var(--slice-1);
+                transform: translate(-20px, -10px);
+              }
+              10% {
+                clip-path: var(--slice-3);
+                transform: translate(10px, 10px);
+              }
+              20% {
+                clip-path: var(--slice-1);
+                transform: translate(-10px, 10px);
+              }
+              30% {
+                clip-path: var(--slice-3);
+                transform: translate(0px, 5px);
+              }
+              40% {
+                clip-path: var(--slice-2);
+                transform: translate(-5px, 0px);
+              }
+              50% {
+                clip-path: var(--slice-3);
+                transform: translate(5px, 0px);
+              }
+              60% {
+                clip-path: var(--slice-4);
+                transform: translate(5px, 10px);
+              }
+              70% {
+                clip-path: var(--slice-2);
+                transform: translate(-10px, 10px);
+              }
+              80% {
+                clip-path: var(--slice-5);
+                transform: translate(20px, -10px);
+              }
+              90% {
+                clip-path: var(--slice-1);
+                transform: translate(-10px, 0px);
+              }
+              100% {
+                clip-path: var(--slice-1);
+                transform: translate(0);
+              }
+            }
+            
+            @supports (-webkit-touch-callout: none) { // stops animation on iphones hypothetically due to lag, must be tested
+                .gradient-border:after {
+                    animation: none;
+                } 
+            }
+            
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            // border: solid white 2px;
+
+            .grid-in-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr 1fr 1fr;
+                width: 90%;
+                height: 90%;
+                gap: 9%;
+                // border: 2px solid white;
+
+                .target {
+                    border-radius: 100%;
+                    height: 70px;
+                    width: 70px;
+                    background: radial-gradient(circle at 35% 35%, #85A1F2, #9063CD);
+                    margin:auto;
+                }
+                
+                .desktop {
+                    display: none;
+                }
+            }
+        }
+
+        .bottom-nav-bar {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-bottom: 5px;
+
+            .button-49,
+            .button-49:after {
+            width: 85px;
+            height: 35px;
+            line-height: 40px;
+            font-size: 20px;
+            font-family: 'Nova Flat';
+            background: linear-gradient(45deg, transparent 5%, #C3B1E1 5%);
+            border: 0;
+            color: #fff;
+            letter-spacing: 3px;
+            box-shadow: 4px 0px 0px #779ecb;
+            outline: transparent;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            }
+
+            .button-49:after {
+            --slice-0: inset(50% 50% 50% 50%);
+            --slice-1: inset(80% -6px 0 0);
+            --slice-2: inset(50% -6px 30% 0);
+            --slice-3: inset(10% -6px 85% 0);
+            --slice-4: inset(40% -6px 43% 0);
+            --slice-5: inset(80% -6px 5% 0);
+            
+            content: 'help';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 3%, #00E6F6 3%, #00E6F6 5%, #89f5ad 5%);
+            text-shadow: -3px -3px 0px #B1A2CA, 3px 3px 0px #78ce78;
+            clip-path: var(--slice-0);
+            }
+
+            .button-49:hover:after {
+            animation: 1s glitch;
+            animation-timing-function: steps(2, end);
+            }
+
+            .button-49:disabled,
+            button[disabled] {
+                opacity: 50%;
+            }
+
+            .aim {
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+
+    }
+}
+
+.end-message { // temporary while adjusting formatting
+    display: none;
+}
