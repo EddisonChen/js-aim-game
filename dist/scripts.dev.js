@@ -256,3 +256,4 @@ resetClick(); // figure out how to get the endmessage text to stop extending the
 // setinterval timer speeds up
 // work around is to wait 2 seconds before start button is reenabled after pressing reset?
 // end message text shows up on reset press, when reset is clicked, time = 1
+// add alternate game mode?

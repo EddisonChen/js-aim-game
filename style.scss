@@ -152,6 +152,10 @@ button[disabled] {
     opacity: 50%;
 }
 
+.exit-link {
+    font-size: 13px;
+}
+
 h2, h3, h4 {
     text-align: center;
     // color: #826d8c;
@@ -295,6 +299,10 @@ h2, h3, h4 {
             font-size: 20px;
             margin-bottom: 0;
         }
+
+        .exit-link {
+            font-size: 13px;
+        }
     }
 }
 
@@ -361,6 +369,10 @@ h2, h3, h4 {
             margin-bottom: 0;
         }
 
+        .exit-link {
+            font-size: 25px;
+        }
+
         .button-49,
         .button-49:after {
             width: 150px;
@@ -402,6 +414,10 @@ h2, h3, h4 {
     
         .start, .resett {
             font-size: 35px;
+        }
+
+        .exit-link {
+            font-size: 25px;
         }
     }
     .button-49,
@@ -478,6 +494,10 @@ h2, h3, h4 {
     .start, .resett {
         font-size: 25px;
         margin-bottom: 15px;
+    }
+
+    .exit-link {
+        font-size: 20px;
     }
 
     .button-49,
