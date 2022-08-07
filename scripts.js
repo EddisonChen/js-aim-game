@@ -36,13 +36,12 @@ const playTargetHitSound = () => {
     targetHitSound.play();
 }
 
-// plays sound on hover over surprisebutton
-const playSurpriseSound = () => {
+const playSurpriseSound = () => { // plays sound on hover over surprisebutton
     exitLink.addEventListener("mouseover", () => {
         surpriseSound.currentTime = 0;
         surpriseSound.play();
     });
-    exitLink.addEventListener("mouseout", ()=> {
+    exitLink.addEventListener("mouseout", ()=> { // stops and resets audio when mouse leaves
         surpriseSound.pause();
         surpriseSound.currentTime = 0;
     })
@@ -67,23 +66,19 @@ const portraitScreenWidthChange = () => {
     });
 } 
 
-// timer starts at 30
-let time = 30;
+let time = 30; // timer starts at 30
 
-//hides all spheres
-const hideAll = () => {
+const hideAll = () => { //hides all spheres
     screenWidthChange();
     screenHeightChange();
     portraitScreenWidthChange();
-    // if screen is 1080px wide, adds hidden to and removes visible class from all targets
-    if (screenWidth.matches || screenHeight.matches || portraitScreenWidth.matches) {
+    if (screenWidth.matches || screenHeight.matches || portraitScreenWidth.matches) { // if css matches one/more of these three options, adds hidden to and removes visible class from all targets
         targetsArr.forEach((target) => {
             target.classList.add("hidden");
             target.classList.remove("visible")
         })
     } else {
-        // adds hidden to and removes visible class from only mobile targets
-        mobileTargetsArr.forEach((mobileTarget) => {
+        mobileTargetsArr.forEach((mobileTarget) => { // adds hidden to and removes visible class from only mobile targets
             mobileTarget.classList.add("hidden");
             mobileTarget.classList.remove("visible");
         });
@@ -94,8 +89,7 @@ const hideAll = () => {
 }
 hideAll();
 
-// selects 3 random spheres to be visible on start click using a math.random and while loop
-const showRandomSpheres = () => {
+const showRandomSpheres = () => { // selects 3 random spheres to be visible on start click using a math.random and while loop
     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
         return hiddenTarget.classList.contains("hidden");
     });
@@ -111,49 +105,43 @@ const showRandomSpheres = () => {
     hiddenTargetsArr[ranNumArr[2]].classList.add("visible"), hiddenTargetsArr[ranNumArr[2]].classList.remove("hidden");
 }
 
-// hide end message
-const hideEndMessageButton = () => {
+const hideEndMessageButton = () => { // hide end message
     endMessage.innerHTML = "";
     endMessage.classList.add("gone");
 }
 hideEndMessageButton();
 
-// click to copy end message using swal for a nice looking alert
-const copyEndMessage = () => {
-    navigator.clipboard.writeText(endMessage.innerHTML);
+const copyEndMessage = () => { // click to copy end message using swal for a nice looking alert
+    endMessage.addEventListener("click", () => {
+        navigator.clipboard.writeText(endMessage.innerHTML);
     swal("Copied to clipboard!")
+    })
 }
 
-// show end message, different based on score received, on click, copies endmessage to clipboard.
-// maybe i can get rid of <a> somehow.
-const showEndMessageButton = () => {
+const showEndMessageButton = () => { // show end message, different based on score received, on click, copies endmessage to clipboard.
     if (scoreValue > 15000) {
         endMessage.innerHTML = `Absolutely incredible. ${scoreValue} points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends that you've found a new career!
-        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`; // maybe i can get rid of <a> somehow.
     } else if (scoreValue > 10000 && scoreValue< 15000) {
         endMessage.innerHTML = `Nice! Your score was ${scoreValue}! Tell your friends just to brag! Click to share with your friends because they deserve to hear about your successes!
         <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
     } else if (scoreValue < 10000 && scoreValue > 5000) {
-        endMessage.innerHTML = `Be better. ${scoreValue} points? I expect more from you. Click to share with your friends, if you feel like this score is even share-worthy..
+        endMessage.innerHTML = `Don't be sorry, be better. ${scoreValue} points? I expect more from you. Click to share with your friends, if you feel like this score is even share-worthy..
         <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
     } else if (scoreValue < 5000) {
-        endMessage.innerHTML =`With a score of ${scoreValue}, you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you're not great at everything. 
+        endMessage.innerHTML =`With a score of ${scoreValue}, you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you are, in fact, not great at everything. 
         <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
     }
-    endMessage.addEventListener("click", () => {
-        copyEndMessage();
-    })
+    copyEndMessage();
     endMessage.classList.remove("gone");
 }
 
-// disable reset for 1.5 secs to prevent multiple consecutive reset and start button clicks leading to speeding timer bug
-const disableReset = () => {
+const disableReset = () => { // disable reset for 1.5 secs to prevent multiple consecutive reset and start button clicks leading to speeding timer bug
     resett.disabled = true;
     setTimeout('resett.disabled=false', 1200);
 }
 
-// starts game, resets score, accuracy, hides all spheres, shows 3 random spheres, hides endmessage, plays start sound, disables reset for 1.2s
-const startGame = () => {
+const startGame = () => { // starts timer, resets score, accuracy, hides all spheres, shows 3 random spheres, hides endmessage, plays start sound, disables reset for 1.2s
     startButton.addEventListener("click", () => {
         disableReset();
         hideEndMessageButton();
@@ -168,11 +156,10 @@ const startGame = () => {
                 time --;
             } else if (time = 1) { // resets timer 
                 clearInterval(timeStart);
-                console.log(time);
+                hideAll();
                 showEndMessageButton()
                 time = 31;
                 timer.innerHTML = `${time - 1} secs`
-                hideAll();
             }
         }, 1000);
         startButton.disabled = true; // disables start button to prevent multiple clicks and timer speecing up
@@ -180,8 +167,7 @@ const startGame = () => {
 }
 startGame();
 
-// random target appear on click selecting only from hidden targets
-const targetAppear = () => {
+const targetAppear = () => { // random target appear on click selecting only from hidden targets
     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
         return hiddenTarget.classList.contains("hidden");
     })
@@ -190,8 +176,7 @@ const targetAppear = () => {
         hiddenTargetsArr[ranNum].classList.remove("hidden");
 }
 
-// target disappear on click
-const targetVanish = (target) => {
+const targetVanish = (target) => { // target disappear on click
     target.classList.add("hidden");
     target.classList.remove("visible");
 }
@@ -199,8 +184,7 @@ const targetVanish = (target) => {
 let targetClickCounter = 0
 let clickCounter = 0
 
-// updates score and accuracy, plays click sound, logs total clicks on playable area
-const totalClicks = () => {
+const totalClicks = () => { // updates score and accuracy, plays click sound, logs total clicks on playable area
     playableArea.addEventListener("click", () => {
         if (time < 30) {
             clickCounter ++;
@@ -212,8 +196,7 @@ const totalClicks = () => {
 }
 totalClicks();
 
-// disappears the target clicked, appears another random target, +1 to targetclickCounter
-const targetClick = () => {
+const targetClick = () => { // disappears the target clicked, appears another random target, +1 to targetclickCounter
         targetsArr.forEach((target) => {
             target.addEventListener("click", () => {
                 playTargetHitSound();
@@ -225,8 +208,7 @@ const targetClick = () => {
 }
 targetClick();
 
-// updates accuracy with each click, caps at 100%
-const accuracyUpdater = () => {
+const accuracyUpdater = () => { // updates accuracy with each click, caps at 100%
     if ((targetClickCounter/clickCounter * 100).toFixed(0) > 100) {
         accuracy.innerHTML = `accuracy: 100%`
     } else if ((targetClickCounter/clickCounter * 100).toFixed(0) <= 100) {
@@ -234,23 +216,20 @@ const accuracyUpdater = () => {
     }       
 }
 
-// updates score with each click
 let scoreValue = 0;
-const scoreUpdater = () => {
+const scoreUpdater = () => { // updates score with each click
     scoreValue = targetClickCounter*120 - clickCounter*20;
     score.innerHTML = `score: ${scoreValue}`;
 }
 
-// clears score, accuracy, clickCounter, and targetClickCounter
-const hardReset = () => {
+const hardReset = () => { // clears score, accuracy, clickCounter, and targetClickCounter
         clickCounter = 0;
         targetClickCounter = 0;
         accuracy.innerHTML = `accuracy:`;
         score.innerHTML = `score:`
 }
 
-// button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres, plays reset sound, hides endmessage, disables startbutton for 1.2s
-const resetClick = () => {
+const resetClick = () => { // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres, plays reset sound, hides endmessage, disables startbutton for 1.2s
     resett.addEventListener("click", () => {
         time = 31;
         playResetClickSound();

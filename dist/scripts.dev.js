@@ -38,15 +38,16 @@ var playTargetHitSound = function playTargetHitSound() {
   targetHitSound.currentTime = 0; // resets audio to allow for consecutive clicks
 
   targetHitSound.play();
-}; // plays sound on hover over surprisebutton
-
+};
 
 var playSurpriseSound = function playSurpriseSound() {
+  // plays sound on hover over surprisebutton
   exitLink.addEventListener("mouseover", function () {
     surpriseSound.currentTime = 0;
     surpriseSound.play();
   });
   exitLink.addEventListener("mouseout", function () {
+    // stops and resets audio when mouse leaves
     surpriseSound.pause();
     surpriseSound.currentTime = 0;
   });
@@ -68,24 +69,25 @@ var screenWidthChange = function screenWidthChange() {
 
 var portraitScreenWidthChange = function portraitScreenWidthChange() {
   portraitScreenWidth.addEventListener("change", function () {});
-}; // timer starts at 30
+};
 
-
-var time = 30; //hides all spheres
+var time = 30; // timer starts at 30
 
 var hideAll = function hideAll() {
+  //hides all spheres
   screenWidthChange();
   screenHeightChange();
-  portraitScreenWidthChange(); // if screen is 1080px wide, adds hidden to and removes visible class from all targets
+  portraitScreenWidthChange();
 
   if (screenWidth.matches || screenHeight.matches || portraitScreenWidth.matches) {
+    // if css matches one/more of these three options, adds hidden to and removes visible class from all targets
     targetsArr.forEach(function (target) {
       target.classList.add("hidden");
       target.classList.remove("visible");
     });
   } else {
-    // adds hidden to and removes visible class from only mobile targets
     mobileTargetsArr.forEach(function (mobileTarget) {
+      // adds hidden to and removes visible class from only mobile targets
       mobileTarget.classList.add("hidden");
       mobileTarget.classList.remove("visible");
     });
@@ -95,9 +97,10 @@ var hideAll = function hideAll() {
   }
 };
 
-hideAll(); // selects 3 random spheres to be visible on start click using a math.random and while loop
+hideAll();
 
 var showRandomSpheres = function showRandomSpheres() {
+  // selects 3 random spheres to be visible on start click using a math.random and while loop
   var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
     return hiddenTarget.classList.contains("hidden");
   });
@@ -114,48 +117,48 @@ var showRandomSpheres = function showRandomSpheres() {
   hiddenTargetsArr[ranNumArr[0]].classList.add("visible"), hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
   hiddenTargetsArr[ranNumArr[1]].classList.add("visible"), hiddenTargetsArr[ranNumArr[1]].classList.remove("hidden");
   hiddenTargetsArr[ranNumArr[2]].classList.add("visible"), hiddenTargetsArr[ranNumArr[2]].classList.remove("hidden");
-}; // hide end message
-
+};
 
 var hideEndMessageButton = function hideEndMessageButton() {
+  // hide end message
   endMessage.innerHTML = "";
   endMessage.classList.add("gone");
 };
 
-hideEndMessageButton(); // click to copy end message using swal for a nice looking alert
+hideEndMessageButton();
 
 var copyEndMessage = function copyEndMessage() {
-  navigator.clipboard.writeText(endMessage.innerHTML);
-  swal("Copied to clipboard!");
-}; // show end message, different based on score received, on click, copies endmessage to clipboard.
-// maybe i can get rid of <a> somehow.
-
+  // click to copy end message using swal for a nice looking alert
+  endMessage.addEventListener("click", function () {
+    navigator.clipboard.writeText(endMessage.innerHTML);
+    swal("Copied to clipboard!");
+  });
+};
 
 var showEndMessageButton = function showEndMessageButton() {
+  // show end message, different based on score received, on click, copies endmessage to clipboard.
   if (scoreValue > 15000) {
-    endMessage.innerHTML = "Absolutely incredible. ".concat(scoreValue, " points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends that you've found a new career!\n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
+    endMessage.innerHTML = "Absolutely incredible. ".concat(scoreValue, " points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends that you've found a new career!\n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>"); // maybe i can get rid of <a> somehow.
   } else if (scoreValue > 10000 && scoreValue < 15000) {
     endMessage.innerHTML = "Nice! Your score was ".concat(scoreValue, "! Tell your friends just to brag! Click to share with your friends because they deserve to hear about your successes!\n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
   } else if (scoreValue < 10000 && scoreValue > 5000) {
-    endMessage.innerHTML = "Be better. ".concat(scoreValue, " points? I expect more from you. Click to share with your friends, if you feel like this score is even share-worthy..\n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
+    endMessage.innerHTML = "Don't be sorry, be better. ".concat(scoreValue, " points? I expect more from you. Click to share with your friends, if you feel like this score is even share-worthy..\n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
   } else if (scoreValue < 5000) {
-    endMessage.innerHTML = "With a score of ".concat(scoreValue, ", you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you're not great at everything. \n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
+    endMessage.innerHTML = "With a score of ".concat(scoreValue, ", you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you are, in fact, not great at everything. \n        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>");
   }
 
-  endMessage.addEventListener("click", function () {
-    copyEndMessage();
-  });
+  copyEndMessage();
   endMessage.classList.remove("gone");
-}; // disable reset for 1.5 secs to prevent multiple consecutive reset and start button clicks leading to speeding timer bug
-
+};
 
 var disableReset = function disableReset() {
+  // disable reset for 1.5 secs to prevent multiple consecutive reset and start button clicks leading to speeding timer bug
   resett.disabled = true;
   setTimeout('resett.disabled=false', 1200);
-}; // starts game, resets score, accuracy, hides all spheres, shows 3 random spheres, hides endmessage, plays start sound, disables reset for 1.2s
-
+};
 
 var startGame = function startGame() {
+  // starts timer, resets score, accuracy, hides all spheres, shows 3 random spheres, hides endmessage, plays start sound, disables reset for 1.2s
   startButton.addEventListener("click", function () {
     disableReset();
     hideEndMessageButton();
@@ -172,38 +175,39 @@ var startGame = function startGame() {
       } else if (time = 1) {
         // resets timer 
         clearInterval(timeStart);
-        console.log(time);
+        hideAll();
         showEndMessageButton();
         time = 31;
         timer.innerHTML = "".concat(time - 1, " secs");
-        hideAll();
       }
     }, 1000);
     startButton.disabled = true; // disables start button to prevent multiple clicks and timer speecing up
   });
 };
 
-startGame(); // random target appear on click selecting only from hidden targets
+startGame();
 
 var targetAppear = function targetAppear() {
+  // random target appear on click selecting only from hidden targets
   var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
     return hiddenTarget.classList.contains("hidden");
   });
   var ranNum = Math.floor(Math.random() * hiddenTargetsArr.length);
   hiddenTargetsArr[ranNum].classList.add("visible");
   hiddenTargetsArr[ranNum].classList.remove("hidden");
-}; // target disappear on click
-
+};
 
 var targetVanish = function targetVanish(target) {
+  // target disappear on click
   target.classList.add("hidden");
   target.classList.remove("visible");
 };
 
 var targetClickCounter = 0;
-var clickCounter = 0; // updates score and accuracy, plays click sound, logs total clicks on playable area
+var clickCounter = 0;
 
 var totalClicks = function totalClicks() {
+  // updates score and accuracy, plays click sound, logs total clicks on playable area
   playableArea.addEventListener("click", function () {
     if (time < 30) {
       clickCounter++;
@@ -215,9 +219,10 @@ var totalClicks = function totalClicks() {
   });
 };
 
-totalClicks(); // disappears the target clicked, appears another random target, +1 to targetclickCounter
+totalClicks();
 
 var targetClick = function targetClick() {
+  // disappears the target clicked, appears another random target, +1 to targetclickCounter
   targetsArr.forEach(function (target) {
     target.addEventListener("click", function () {
       playTargetHitSound();
@@ -228,34 +233,35 @@ var targetClick = function targetClick() {
   });
 };
 
-targetClick(); // updates accuracy with each click, caps at 100%
+targetClick();
 
 var accuracyUpdater = function accuracyUpdater() {
+  // updates accuracy with each click, caps at 100%
   if ((targetClickCounter / clickCounter * 100).toFixed(0) > 100) {
     accuracy.innerHTML = "accuracy: 100%";
   } else if ((targetClickCounter / clickCounter * 100).toFixed(0) <= 100) {
     accuracy.innerHTML = "accuracy: ".concat((targetClickCounter / clickCounter * 100).toFixed(0), "%");
   }
-}; // updates score with each click
-
+};
 
 var scoreValue = 0;
 
 var scoreUpdater = function scoreUpdater() {
+  // updates score with each click
   scoreValue = targetClickCounter * 120 - clickCounter * 20;
   score.innerHTML = "score: ".concat(scoreValue);
-}; // clears score, accuracy, clickCounter, and targetClickCounter
-
+};
 
 var hardReset = function hardReset() {
+  // clears score, accuracy, clickCounter, and targetClickCounter
   clickCounter = 0;
   targetClickCounter = 0;
   accuracy.innerHTML = "accuracy:";
   score.innerHTML = "score:";
-}; // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres, plays reset sound, hides endmessage, disables startbutton for 1.2s
-
+};
 
 var resetClick = function resetClick() {
+  // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres, plays reset sound, hides endmessage, disables startbutton for 1.2s
   resett.addEventListener("click", function () {
     time = 31;
     playResetClickSound();
