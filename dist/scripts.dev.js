@@ -197,7 +197,6 @@ var totalClicks = function totalClicks() {
     accuracyUpdater();
     scoreUpdater();
     playClickSound();
-    hideEndMessageButton();
   });
 };
 

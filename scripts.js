@@ -196,7 +196,6 @@ const totalClicks = () => {
         accuracyUpdater();
         scoreUpdater();
         playClickSound();
-        hideEndMessageButton();
     });
 }
 totalClicks();
