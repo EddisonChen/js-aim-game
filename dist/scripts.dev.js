@@ -7,6 +7,7 @@ var playableArea = document.querySelector('.grid');
 var accuracy = document.querySelector('.accuracy');
 var score = document.querySelector('.score');
 var resett = document.querySelector(".resett");
+var exitLink = document.querySelector(".exit-link");
 var timer = document.querySelector('.timer');
 var endMessage = document.querySelector(".end-message");
 var mobileTargets = document.querySelectorAll(".mobile");
@@ -16,7 +17,8 @@ var desktopTargetsArr = Array.from(desktopTargets);
 var clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
 var resetClickSound = new Audio("./soundfx/loweredtrimmedresetclick.mp3");
 var startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
-var targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3"); // audio play functions on click
+var targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3");
+var surpriseSound = new Audio("./soundfx/surprisesoundtrimmed.mp3"); // audio play functions on click
 
 var playClickSound = function playClickSound() {
   clickSound.currentTime = 0; // resets audio to allow for consecutive clicks
@@ -36,8 +38,16 @@ var playTargetHitSound = function playTargetHitSound() {
   targetHitSound.currentTime = 0; // resets audio to allow for consecutive clicks
 
   targetHitSound.play();
-}; // media query for js, senses if screen is wider than 1080px or taller than 550px
+};
 
+var playSurpriseSound = function playSurpriseSound() {
+  exitLink.addEventListener("mouseover", function () {
+    surpriseSound.currentTime = 0;
+    surpriseSound.play();
+  });
+};
+
+playSurpriseSound(); // media query for js, senses if screen is wider than 1080px or taller than 550px
 
 var screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
 var screenHeight = window.matchMedia('(orientation: landscape) and (min-height: 550px)');

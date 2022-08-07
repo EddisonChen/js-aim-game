@@ -5,6 +5,7 @@ const playableArea = document.querySelector('.grid');
 const accuracy = document.querySelector('.accuracy');
 const score = document.querySelector('.score');
 const resett = document.querySelector(`.resett`);
+const exitLink = document.querySelector(`.exit-link`);
 const timer = document.querySelector('.timer');
 const endMessage = document.querySelector(".end-message");
 const mobileTargets = document.querySelectorAll(".mobile");
@@ -15,24 +16,33 @@ const clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
 const resetClickSound = new Audio ("./soundfx/loweredtrimmedresetclick.mp3");
 const startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
 const targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3");
+const surpriseSound = new Audio("./soundfx/surprisesoundtrimmed.mp3");
 
 // audio play functions on click
 const playClickSound =() => {
     clickSound.currentTime = 0; // resets audio to allow for consecutive clicks
     clickSound.play();
 }
-const playResetClickSound =() => {
+const playResetClickSound = () => {
     resetClickSound.play();
 }
 
-const playStartClickSound =() => {
+const playStartClickSound = () => {
     startClickSound.play();
 }
 
-const playTargetHitSound =() => {
+const playTargetHitSound = () => {
     targetHitSound.currentTime = 0; // resets audio to allow for consecutive clicks
     targetHitSound.play();
 }
+
+const playSurpriseSound = () => {
+    exitLink.addEventListener("mouseover", () => {
+        surpriseSound.currentTime = 0;
+        surpriseSound.play();
+    })
+}
+playSurpriseSound();
 
 // media query for js, senses if screen is wider than 1080px or taller than 550px
 const screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
