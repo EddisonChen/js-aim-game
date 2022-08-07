@@ -154,6 +154,10 @@ button[disabled] {
 
 .exit-link {
     font-size: 13px;
+    
+    a {
+        text-decoration: none;
+    }
 }
 
 h2, h3, h4 {
