@@ -123,6 +123,7 @@ var hideEndMessageButton = function hideEndMessageButton() {
   // hide end message
   endMessage.innerHTML = "";
   endMessage.classList.add("gone");
+  endMessage.classList.remove("not-gone");
 };
 
 hideEndMessageButton();
@@ -149,6 +150,7 @@ var showEndMessageButton = function showEndMessageButton() {
 
   copyEndMessage();
   endMessage.classList.remove("gone");
+  endMessage.classList.add("not-gone");
 };
 
 var disableReset = function disableReset() {

@@ -108,6 +108,7 @@ const showRandomSpheres = () => { // selects 3 random spheres to be visible on s
 const hideEndMessageButton = () => { // hide end message
     endMessage.innerHTML = "";
     endMessage.classList.add("gone");
+    endMessage.classList.remove("not-gone");
 }
 hideEndMessageButton();
 
@@ -134,6 +135,7 @@ const showEndMessageButton = () => { // show end message, different based on sco
     }
     copyEndMessage();
     endMessage.classList.remove("gone");
+    endMessage.classList.add("not-gone");
 }
 
 const disableReset = () => { // disable reset for 1.5 secs to prevent multiple consecutive reset and start button clicks leading to speeding timer bug

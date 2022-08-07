@@ -12,8 +12,12 @@
   display: none;
 }
 
+.not-gone {
+  display: inline;
+}
+
 .end-message {
-  margin: 10px 20px 10px 20px;
+  padding: 20px 30px 12px 30px;
   font-family: Space Grotesk;
   font-size: 20px;
   color: #575757;

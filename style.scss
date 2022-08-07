@@ -7,15 +7,20 @@
     padding: 0;
     cursor: crosshair;
     font-size: 17px;
+    // border: 1px solid black;
 }
 
 .gone {
     display: none;
 }
 
+.not-gone {
+    display:inline;
+}
+
 .end-message {
     // border: 2px solid black;
-    margin: 10px 20px 10px 20px;
+    padding: 20px 30px 12px 30px;
     font-family: Space Grotesk;
     // font-family: Monofett;
     font-size: 20px;
