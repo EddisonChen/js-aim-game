@@ -10,12 +10,16 @@
     // border: 1px solid black;
 }
 
+a {
+    text-decoration: none;
+}
+
 .gone {
     display: none;
 }
 
 .not-gone {
-    display:inline;
+    display:block;
 }
 
 .end-message {

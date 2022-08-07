@@ -115,14 +115,15 @@ hideEndMessageButton();
 const copyEndMessage = () => { // click to copy end message using swal for a nice looking alert
     endMessage.addEventListener("click", () => {
         navigator.clipboard.writeText(endMessage.innerHTML);
-    swal("Copied to clipboard!")
+    swal("Copied to clipboard!");
     })
 }
 
 const showEndMessageButton = () => { // show end message, different based on score received, on click, copies endmessage to clipboard.
     if (scoreValue > 15000) {
         endMessage.innerHTML = `Absolutely incredible. ${scoreValue} points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends that you've found a new career!
-        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`; // maybe i can get rid of <a> somehow.
+        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`
+        ; // maybe i can get rid of <a> somehow.
     } else if (scoreValue > 10000 && scoreValue< 15000) {
         endMessage.innerHTML = `Nice! Your score was ${scoreValue}! Tell your friends just to brag! Click to share with your friends because they deserve to hear about your successes!
         <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
