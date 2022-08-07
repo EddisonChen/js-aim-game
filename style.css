@@ -16,7 +16,7 @@
   margin: 10px 20px 10px 20px;
   font-family: Space Grotesk;
   font-size: 20px;
-  color: #424242;
+  color: #575757;
   text-align: center;
 }
 
@@ -225,6 +225,11 @@ h2, h3, h4 {
   100% {
     clip-path: var(--slice-1);
     transform: translate(0);
+  }
+}
+@supports (-webkit-touch-callout: none) {
+  .gradient-border:after {
+    animation: none;
   }
 }
 @media screen and (orientation: portrait) and (max-width: 540px) {

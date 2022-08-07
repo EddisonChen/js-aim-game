@@ -19,7 +19,7 @@
     font-family: Space Grotesk;
     // font-family: Monofett;
     font-size: 20px;
-    color:#424242;
+    color:#575757;
     text-align: center;
 }
 
@@ -248,6 +248,12 @@ h2, h3, h4 {
     clip-path: var(--slice-1);
     transform: translate(0);
   }
+}
+
+@supports (-webkit-touch-callout: none) { // stops animation on iphones hypothetically due to lag, must be tested
+    .gradient-border:after {
+        animation: none;
+    } 
 }
 
 @media screen and (orientation:portrait) and (max-width: 540px) {
