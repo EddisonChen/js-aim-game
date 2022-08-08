@@ -177,6 +177,13 @@ var disableReset = function disableReset() {
 
 var time = 30; // timer starts at 30
 
+var showAndHideTargets = function showAndHideTargets() {
+  while (time < 30) {
+    setTimeout("hideAll()", 200);
+    setTimeout("showRandomSpheres()", 50);
+  }
+};
+
 var startGame = function startGame() {
   // starts timer, resets score, accuracy, hides all spheres, shows 3 random spheres, hides endmessage, plays start sound, disables reset for 1.2s
   startButton.addEventListener("click", function () {
@@ -303,5 +310,5 @@ var resetClick = function resetClick() {
   });
 };
 
-resetClick(); // score not reseting with each new game
-// add a time limit for each new sphere showing
+resetClick(); // add a time limit for each new sphere showing
+// find out why page is being extended

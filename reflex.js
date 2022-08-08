@@ -163,6 +163,13 @@ const disableReset = () => { // disable reset for 1.5 secs to prevent multiple c
 
 let time = 30; // timer starts at 30
 
+const showAndHideTargets = () => {
+    while (time < 30) {
+        setTimeout("hideAll()", 200)
+        setTimeout("showRandomSpheres()", 50);
+    }
+}
+
 const startGame = () => { // starts timer, resets score, accuracy, hides all spheres, shows 3 random spheres, hides endmessage, plays start sound, disables reset for 1.2s
     startButton.addEventListener("click", () => {
         disableReset();
@@ -275,5 +282,5 @@ const resetClick = () => { // button press for reset, clears score, accuracy, cl
 }
 resetClick();
 
-// score not reseting with each new game
 // add a time limit for each new sphere showing
+// find out why page is being extended
