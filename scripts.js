@@ -46,16 +46,11 @@ const playReflexSound = () => { // plays sound on hover over reflexbutton
 playReflexSound();
 
 // media query for js, senses if css is being matched
-const screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
-const screenHeight = window.matchMedia('(orientation: landscape) and (min-height: 550px)');
-const portraitScreenWidth = window.matchMedia('(orientation: portrait) and (min-width: 540px)');
+const landscapeScreenHeight = window.matchMedia('(orientation: landscape) and (min-height: 500px)');
+const portraitScreenWidth = window.matchMedia('(orientation: portrait) and (min-width:500px)');
 
-const screenHeightChange = () => {
-    screenHeight.addEventListener("change", () => {
-    });
-}
-const screenWidthChange = () => {
-    screenWidth.addEventListener("change", () => {
+const landscapeScreenHeightChange = () => {
+    landscapeScreenHeight.addEventListener("change", () => {
     });
 }
 const portraitScreenWidthChange = () => {
@@ -64,10 +59,9 @@ const portraitScreenWidthChange = () => {
 } 
 
 const hideAll = () => { //hides all spheres
-    screenWidthChange();
-    screenHeightChange();
+    landscapeScreenHeightChange();
     portraitScreenWidthChange();
-    if (screenWidth.matches || screenHeight.matches || portraitScreenWidth.matches) { // if css matches one/more of these three options, adds hidden to and removes visible class from all targets
+    if (landscapeScreenHeight.matches || portraitScreenWidth.matches) { // if css matches one/more of these three options, adds hidden to and removes visible class from all targets
         targetsArr.forEach((target) => {
             target.classList.add("hidden");
             target.classList.remove("visible")

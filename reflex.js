@@ -5,7 +5,7 @@ const playableArea = document.querySelector('.grid');
 const accuracy = document.querySelector('.accuracy');
 const score = document.querySelector('.score');
 const resett = document.querySelector(`.resett`);
-const aimButton = document.querySelector(`.aim`);
+const aimButton = document.querySelector(`.exit-link`);
 const timer = document.querySelector('.timer');
 const endMessage = document.querySelector(".end-message");
 const mobileTargets = document.querySelectorAll(".mobile");
@@ -49,16 +49,11 @@ const playAimButtonSound = () => { // plays sound on hover over reflexbutton
 playAimButtonSound();
 
 // media query for js, senses if css is being matched
-const screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
-const screenHeight = window.matchMedia('(orientation: landscape) and (min-height: 550px)');
-const portraitScreenWidth = window.matchMedia('(orientation: portrait) and (min-width: 540px)');
+const landscapeScreenHeight = window.matchMedia('(orientation: landscape) and (min-height: 500px)');
+const portraitScreenWidth = window.matchMedia('(orientation: portrait) and (min-width:500px)');
 
-const screenHeightChange = () => {
-    screenHeight.addEventListener("change", () => {
-    });
-}
-const screenWidthChange = () => {
-    screenWidth.addEventListener("change", () => {
+const landscapeScreenHeightChange = () => {
+    landscapeScreenHeight.addEventListener("change", () => {
     });
 }
 const portraitScreenWidthChange = () => {
@@ -67,10 +62,9 @@ const portraitScreenWidthChange = () => {
 } 
 
 const hideAll = () => { //hides all spheres
-    screenWidthChange();
-    screenHeightChange();
+    landscapeScreenHeightChange();
     portraitScreenWidthChange();
-    if (screenWidth.matches || screenHeight.matches || portraitScreenWidth.matches) { // if css matches one/more of these three options, adds hidden to and removes visible class from all targets
+    if (landscapeScreenHeight.matches || portraitScreenWidth.matches) { // if css matches one/more of these three options, adds hidden to and removes visible class from all targets
         targetsArr.forEach((target) => {
             target.classList.add("hidden");
             target.classList.remove("visible");
@@ -137,17 +131,17 @@ const copyEndMessage = () => { // click to copy end message using swal for a nic
 }
 
 const showEndMessageButton = () => { // show end message, different based on score received, on click, copies endmessage to clipboard.
-    if (scoreValue > 15000) {
+    if (scoreValue > 8000) {
         endMessage.innerHTML = `Absolutely incredible. ${scoreValue} points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends that you've found a new career!
         <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`
         ; // maybe i can get rid of <a> somehow.
-    } else if (scoreValue > 10000 && scoreValue< 15000) {
+    } else if (scoreValue > 6000 && scoreValue < 8000) {
         endMessage.innerHTML = `Nice! Your score was ${scoreValue}! Tell your friends just to brag! Click to share with your friends because they deserve to hear about your successes!
         <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
-    } else if (scoreValue < 10000 && scoreValue > 5000) {
+    } else if (scoreValue < 6000 && scoreValue > 4000) {
         endMessage.innerHTML = `Don't be sorry, be better. ${scoreValue} points? I expect more from you. Click to share with your friends, if you feel like this score is even share-worthy..
         <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
-    } else if (scoreValue < 5000) {
+    } else if (scoreValue < 4000) {
         endMessage.innerHTML =`With a score of ${scoreValue}, you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you are, in fact, not great at everything. 
         <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
     }
@@ -162,13 +156,6 @@ const disableReset = () => { // disable reset for 1.5 secs to prevent multiple c
 }
 
 let time = 30; // timer starts at 30
-
-const showAndHideTargets = () => {
-    while (time < 30) {
-        setTimeout("hideAll()", 200)
-        setTimeout("showRandomSpheres()", 50);
-    }
-}
 
 const startGame = () => { // starts timer, resets score, accuracy, hides all spheres, shows 3 random spheres, hides endmessage, plays start sound, disables reset for 1.2s
     startButton.addEventListener("click", () => {
@@ -195,15 +182,6 @@ const startGame = () => { // starts timer, resets score, accuracy, hides all sph
     });
 }
 startGame();
-
-// const targetAppear = () => { // random target appear on click selecting only from hidden targets
-//     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
-//         return hiddenTarget.classList.contains("hidden");
-//     })
-//     let ranNum = Math.floor(Math.random()*hiddenTargetsArr.length);
-//         hiddenTargetsArr[ranNum].classList.add("visible");
-//         hiddenTargetsArr[ranNum].classList.remove("hidden");
-// }
 
 const targetVanish = () => { // target disappear on click
     targetsArr.forEach((target) => {
@@ -283,4 +261,3 @@ const resetClick = () => { // button press for reset, clears score, accuracy, cl
 resetClick();
 
 // add a time limit for each new sphere showing
-// find out why page is being extended

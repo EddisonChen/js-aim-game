@@ -18,7 +18,7 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 2fr 1fr 40fr 1fr;
         background-image: url("./pics/reflexvertback.jpg");
-        background-size: 500px;
+        background-size: 900px;
         // border: 2px solid white;
 
         h1 {
@@ -136,7 +136,7 @@
         .end-message {
             color: white;
             // border: white;
-            padding: 20px;
+            // padding: 20px;
             text-align: center;
 
             .gone {
@@ -248,14 +248,236 @@
                 opacity: 50%;
             }
 
-            .aim {
+            .exit-link {
                 a {
                     text-decoration: none;
                 }
             }
         }
-
     }
 }
 
-//add media queries that match those in js
+@media screen and (orientation: portrait) and (min-width:500px) {
+  * {
+    body {
+      h1 {
+        img {
+          width: 160px;
+          height: auto;
+        }
+      }
+      h2, h3, h4 {
+        font-size: 20px;
+      }
+
+      .end-message {
+        padding: 20px;
+        font-size: 22px;
+      }
+      .grid {
+        .grid-in-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr;
+          // border: 2px solid white;
+      
+          .target {
+            height: 75px;
+            width: 75px;
+          }
+      
+          .desktop {
+            display: unset !important;
+          }
+        }
+      }
+      .bottom-nav-bar {
+        .button-49,
+        .button-49:after {
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 25px;
+      }
+    }
+  }
+}
+}
+
+@media screen and (orientation: portrait) and (min-width:800px) {
+  * {
+    body {
+      h1 {
+        img {
+          width: 180px;
+          height: auto;
+        }
+      }
+      h2, h3, h4 {
+        font-size: 25px;
+      }
+
+      .end-message {
+        padding: 25px;
+        font-size: 30px;
+      }
+
+      .bottom-nav-bar {
+        .button-49,
+        .button-49:after {
+          width: 120px;
+          height: 55px;
+          line-height: 40px;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (orientation: landscape) {
+  * {
+    body {
+      display:grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 2fr 1fr .1fr 15fr 1fr;
+      background-image: url("./pics/reflexlandscapewallpaper.jpg");
+      background-size: 1944px;
+      // border: 2px solid white;
+
+      h2, h3, h4 {
+        width: 100%;
+        text-align: center;
+      }
+
+      .info-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+      }
+
+      .grid {
+        .grid-in-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+
+          .target {
+            height: 62px;
+            width: 62px;
+          }
+        }
+      }
+      }
+    }
+  }
+
+@media screen and (orientation: landscape) and (min-height: 500px) {
+  * {
+    body {
+        h1 {
+          img {
+            width: 160px;
+            height: auto;
+          }
+        }
+        
+        h2, h3, h4 {
+        font-size: 20px;
+        }
+
+        .end-message {
+          padding: 20px;
+          font-size: 22px;
+        }
+
+        .grid {
+          .grid-in-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+
+            .target {
+              height: 75px;
+              width: 75px;
+            }
+          }
+          .desktop {
+            display: unset !important;
+          }
+        }
+        .bottom-nav-bar {
+          .button-49,
+          .button-49:after {
+          width: 100px;
+          height: 37px;
+          line-height: 40px;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (orientation: landscape) and (min-height: 850px) {
+* {
+  body {
+      h1 {
+        img {
+          width: 190px;
+          height: auto;
+        }
+      }
+
+      .end-message {
+        padding: 25px;
+        font-size: 30px;
+      }
+
+    h2, h3, h4 {
+      font-size: 25px;
+    }
+    .bottom-nav-bar {
+      .button-49,
+      .button-49:after {
+      width: 110px;
+      height: 45px;
+      line-height: 40px;
+      font-size: 25px;
+  }
+}
+  }
+}
+}
+
+@media screen and (orientation: landscape) and (min-height: 1000px) {
+  * {
+    body {
+      h1 {
+        img {
+          width: 220px;
+          height: auto;
+        }
+      }
+      h2, h3, h4 {
+        font-size: 32px;
+      }
+
+      .end-message {
+        padding: 30px;
+        font-size: 35px;
+      }
+      
+      .bottom-nav-bar {
+        .button-49,
+        .button-49:after {
+        width: 115px;
+        height: 50px;
+        line-height: 40px;
+        font-size: 30px;
+    }
+  }
+    }
+  }
+}
