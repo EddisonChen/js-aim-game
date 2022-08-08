@@ -91,7 +91,7 @@ const hideAll = () => { //hides all spheres
         })
     }
 }
-// hideAll();
+hideAll();
 
 const showRandomSpheres = () => { // selects 2 random spheres to be visible on start click using a math.random and while loop
     targetsArr.forEach((target) => {

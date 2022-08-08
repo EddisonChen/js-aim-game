@@ -16,9 +16,10 @@
         width: 100vw;
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 2fr 13fr 1fr;
+        grid-template-rows: 1fr 2fr 1fr 40fr 1fr;
         background-image: url("./pics/reflexvertback.jpg");
         background-size: 500px;
+        // border: 2px solid white;
 
         h1 {
             text-align: center;
@@ -41,6 +42,7 @@
             h2, h3, h4 {
                 padding: 0px 15px 0px 15px;
                 border: 3px rgb(248, 248, 248) solid;
+                // border: 3px rgb(41, 28, 116) solid;
                 margin-top: 2px;
             }
 
@@ -131,6 +133,19 @@
             
         }
 
+        .end-message {
+            color: white;
+            // border: white;
+            padding: 20px;
+
+            .gone {
+                display: none;
+            }
+            .not-gone {
+                display: inline;
+            }
+        }
+
         .grid {
             display: flex;
             flex-direction: row;
@@ -143,7 +158,7 @@
                 grid-template-columns: 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr 1fr;
                 width: 90%;
-                height: 90%;
+                height: 95%;
                 gap: 9%;
                 // border: 2px solid white;
 
@@ -151,12 +166,28 @@
                     border-radius: 100%;
                     height: 70px;
                     width: 70px;
-                    background: radial-gradient(circle at 35% 35%, #85A1F2, #9063CD);
+                    // background: radial-gradient(circle at 35% 35%, #85A1F2, #9063CD);
                     margin:auto;
                 }
                 
                 .desktop {
                     display: none;
+                }
+
+                .visible {
+                    visibility: visible;
+                }
+
+                .hidden {
+                    visibility: hidden;
+                }
+
+                .red {
+                    background-color: red;
+                }
+
+                .blue {
+                    background-color:blue;
                 }
             }
         }
@@ -226,6 +257,4 @@
     }
 }
 
-.end-message { // temporary while adjusting formatting
-    display: none;
-}
+//add media queries that match those in js

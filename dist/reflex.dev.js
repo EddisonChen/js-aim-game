@@ -7,7 +7,7 @@ var playableArea = document.querySelector('.grid');
 var accuracy = document.querySelector('.accuracy');
 var score = document.querySelector('.score');
 var resett = document.querySelector(".resett");
-var exitLink = document.querySelector(".exit-link");
+var aimButton = document.querySelector(".aim");
 var timer = document.querySelector('.timer');
 var endMessage = document.querySelector(".end-message");
 var mobileTargets = document.querySelectorAll(".mobile");
@@ -18,7 +18,7 @@ var clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
 var resetClickSound = new Audio("./soundfx/loweredtrimmedresetclick.mp3");
 var startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
 var targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3");
-var reflexSound = new Audio("./soundfx/surprisesoundtrimmed.mp3"); // audio play functions on click
+var aimButtonSound = new Audio("./soundfx/surprisesoundtrimmed.mp3"); // audio play on click functions
 
 var playClickSound = function playClickSound() {
   clickSound.currentTime = 0; // resets audio to allow for consecutive clicks
@@ -40,20 +40,20 @@ var playTargetHitSound = function playTargetHitSound() {
   targetHitSound.play();
 };
 
-var playReflexSound = function playReflexSound() {
+var playAimButtonSound = function playAimButtonSound() {
   // plays sound on hover over reflexbutton
-  exitLink.addEventListener("mouseover", function () {
-    reflexSound.currentTime = 0;
-    reflexSound.play();
+  aimButton.addEventListener("mouseover", function () {
+    aimButtonSound.currentTime = 0;
+    aimButtonSound.play();
   });
-  exitLink.addEventListener("mouseout", function () {
+  aimButton.addEventListener("mouseout", function () {
     // stops and resets audio when mouse leaves
-    reflexSound.pause();
-    reflexSound.currentTime = 0;
+    aimButtonSound.pause();
+    aimButtonSound.currentTime = 0;
   });
 };
 
-playReflexSound(); // media query for js, senses if css is being matched
+playAimButtonSound(); // media query for js, senses if css is being matched
 
 var screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
 var screenHeight = window.matchMedia('(orientation: landscape) and (min-height: 550px)');
@@ -82,15 +82,21 @@ var hideAll = function hideAll() {
     targetsArr.forEach(function (target) {
       target.classList.add("hidden");
       target.classList.remove("visible");
+      target.classList.remove("red");
+      target.classList.remove("blue");
     });
   } else {
     mobileTargetsArr.forEach(function (mobileTarget) {
       // adds hidden to and removes visible class from only mobile targets
       mobileTarget.classList.add("hidden");
       mobileTarget.classList.remove("visible");
+      mobileTarget.classList.remove("red");
+      mobileTarget.classList.remove("blue");
     });
     desktopTargetsArr.forEach(function (desktopTarget) {
       desktopTarget.classList.remove("hidden");
+      desktopTarget.classList.remove("red");
+      desktopTarget.classList.remove("blue");
     });
   }
 };
@@ -98,13 +104,24 @@ var hideAll = function hideAll() {
 hideAll();
 
 var showRandomSpheres = function showRandomSpheres() {
-  // selects 3 random spheres to be visible on start click using a math.random and while loop
+  // selects 2 random spheres to be visible on start click using a math.random and while loop
+  targetsArr.forEach(function (target) {
+    if (target.classList.contains("red") && target.classList.contains("visible")) {
+      target.classList.remove("red");
+      target.classList.remove("visible");
+      target.classList.add("hidden");
+    } else if (target.classList.contains("blue") && target.classList.contains("visible")) {
+      target.classList.remove("blue");
+      target.classList.remove("visible");
+      target.classList.add("hidden");
+    }
+  });
   var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
     return hiddenTarget.classList.contains("hidden");
   });
   var ranNumArr = [];
 
-  while (ranNumArr.length < 3) {
+  while (ranNumArr.length < 2) {
     var ranNum = Math.floor(Math.random() * hiddenTargetsArr.length);
 
     if (ranNumArr.indexOf(ranNum) === -1) {
@@ -112,9 +129,12 @@ var showRandomSpheres = function showRandomSpheres() {
     }
   }
 
-  hiddenTargetsArr[ranNumArr[0]].classList.add("visible"), hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
-  hiddenTargetsArr[ranNumArr[1]].classList.add("visible"), hiddenTargetsArr[ranNumArr[1]].classList.remove("hidden");
-  hiddenTargetsArr[ranNumArr[2]].classList.add("visible"), hiddenTargetsArr[ranNumArr[2]].classList.remove("hidden");
+  hiddenTargetsArr[ranNumArr[0]].classList.add("visible");
+  hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
+  hiddenTargetsArr[ranNumArr[0]].classList.add("blue");
+  hiddenTargetsArr[ranNumArr[1]].classList.add("visible");
+  hiddenTargetsArr[ranNumArr[1]].classList.remove("hidden");
+  hiddenTargetsArr[ranNumArr[1]].classList.add("red");
 };
 
 var hideEndMessageButton = function hideEndMessageButton() {
@@ -187,25 +207,29 @@ var startGame = function startGame() {
   });
 };
 
-startGame();
+startGame(); // const targetAppear = () => { // random target appear on click selecting only from hidden targets
+//     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
+//         return hiddenTarget.classList.contains("hidden");
+//     })
+//     let ranNum = Math.floor(Math.random()*hiddenTargetsArr.length);
+//         hiddenTargetsArr[ranNum].classList.add("visible");
+//         hiddenTargetsArr[ranNum].classList.remove("hidden");
+// }
 
-var targetAppear = function targetAppear() {
-  // random target appear on click selecting only from hidden targets
-  var hiddenTargetsArr = targetsArr.filter(function (hiddenTarget) {
-    return hiddenTarget.classList.contains("hidden");
-  });
-  var ranNum = Math.floor(Math.random() * hiddenTargetsArr.length);
-  hiddenTargetsArr[ranNum].classList.add("visible");
-  hiddenTargetsArr[ranNum].classList.remove("hidden");
-};
-
-var targetVanish = function targetVanish(target) {
+var targetVanish = function targetVanish() {
   // target disappear on click
-  target.classList.add("hidden");
-  target.classList.remove("visible");
+  targetsArr.forEach(function (target) {
+    if (target.classList.contains("visible")) {
+      target.classList.add("hidden");
+      target.classList.remove("visible");
+      target.classList.remove("red");
+      target.classList.remove("blue");
+    }
+  });
 };
 
-var targetClickCounter = 0;
+var blueClickCounter = 0;
+var redClickCounter = 0;
 var clickCounter = 0;
 
 var totalClicks = function totalClicks() {
@@ -228,9 +252,15 @@ var targetClick = function targetClick() {
   targetsArr.forEach(function (target) {
     target.addEventListener("click", function () {
       playTargetHitSound();
-      targetAppear();
-      targetVanish(target);
-      targetClickCounter++;
+
+      if (target.classList.contains("red")) {
+        redClickCounter++;
+      } else if (target.classList.contains("blue")) {
+        blueClickCounter++;
+      }
+
+      targetVanish();
+      showRandomSpheres();
     });
   });
 };
@@ -239,10 +269,10 @@ targetClick();
 
 var accuracyUpdater = function accuracyUpdater() {
   // updates accuracy with each click, caps at 100%
-  if ((targetClickCounter / clickCounter * 100).toFixed(0) > 100) {
+  if ((blueClickCounter / clickCounter * 100).toFixed(0) > 100) {
     accuracy.innerHTML = "accuracy: 100%";
-  } else if ((targetClickCounter / clickCounter * 100).toFixed(0) <= 100) {
-    accuracy.innerHTML = "accuracy: ".concat((targetClickCounter / clickCounter * 100).toFixed(0), "%");
+  } else if ((blueClickCounter / clickCounter * 100).toFixed(0) <= 100) {
+    accuracy.innerHTML = "accuracy: ".concat((blueClickCounter / clickCounter * 100).toFixed(0), "%");
   }
 };
 
@@ -250,14 +280,15 @@ var scoreValue = 0;
 
 var scoreUpdater = function scoreUpdater() {
   // updates score with each click
-  scoreValue = targetClickCounter * 120 - clickCounter * 20;
+  scoreValue = blueClickCounter * 120 - (clickCounter * 20 + redClickCounter * 50);
   score.innerHTML = "score: ".concat(scoreValue);
 };
 
 var hardReset = function hardReset() {
   // clears score, accuracy, clickCounter, and targetClickCounter
   clickCounter = 0;
-  targetClickCounter = 0;
+  blueClickCounter = 0;
+  redClickCounter = 0;
   accuracy.innerHTML = "accuracy:";
   score.innerHTML = "score:";
 };
@@ -274,9 +305,5 @@ var resetClick = function resetClick() {
   });
 };
 
-resetClick(); // figure out how to get the endmessage text to stop extending the page.
-// bug with repeated pressing of start and reset
-// setinterval timer speeds up
-// work around is to wait 2 seconds before start button is reenabled after pressing reset?
-// end message text shows up on reset press, when reset is clicked, time = 1
-// add alternate game mode?
+resetClick(); // score not reseting with each new game
+// add a time limit for each new sphere showing
