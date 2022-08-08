@@ -261,3 +261,7 @@ const resetClick = () => { // button press for reset, clears score, accuracy, cl
 resetClick();
 
 // add a time limit for each new sphere showing
+
+// set timeout with a set interval with an if statement that checks if the spheres are onscreen or not
+// if not on screen, getthem to show
+// if on screen, hide after something seconds
