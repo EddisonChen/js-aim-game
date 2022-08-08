@@ -73,34 +73,54 @@ const hideAll = () => { //hides all spheres
     if (screenWidth.matches || screenHeight.matches || portraitScreenWidth.matches) { // if css matches one/more of these three options, adds hidden to and removes visible class from all targets
         targetsArr.forEach((target) => {
             target.classList.add("hidden");
-            target.classList.remove("visible")
+            target.classList.remove("visible");
+            target.classList.remove("red");
+            target.classList.remove("blue")
         })
     } else {
         mobileTargetsArr.forEach((mobileTarget) => { // adds hidden to and removes visible class from only mobile targets
             mobileTarget.classList.add("hidden");
             mobileTarget.classList.remove("visible");
+            mobileTarget.classList.remove("red");
+            mobileTarget.classList.remove("blue");
         });
         desktopTargetsArr.forEach((desktopTarget) => {
             desktopTarget.classList.remove("hidden");
+            desktopTarget.classList.remove("red");
+            desktopTarget.classList.remove("blue");
         })
     }
 }
-hideAll();
+// hideAll();
 
-const showRandomSpheres = () => { // selects 3 random spheres to be visible on start click using a math.random and while loop
+const showRandomSpheres = () => { // selects 2 random spheres to be visible on start click using a math.random and while loop
+    targetsArr.forEach((target) => {
+        if (target.classList.contains("red") && target.classList.contains("visible")) {
+            target.classList.remove("red");
+            target.classList.remove("visible");
+            target.classList.add("hidden");
+        } else if (target.classList.contains("blue") && target.classList.contains("visible")) {
+            target.classList.remove("blue");
+            target.classList.remove("visible");
+            target.classList.add("hidden");
+        }
+    })
     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
         return hiddenTarget.classList.contains("hidden");
     });
     let ranNumArr = [];
-    while (ranNumArr.length < 3) {
+    while (ranNumArr.length < 2) {
         let ranNum = Math.floor(Math.random()*hiddenTargetsArr.length);
         if(ranNumArr.indexOf(ranNum) === -1) {
             ranNumArr.push(ranNum);
         }
     }
-    hiddenTargetsArr[ranNumArr[0]].classList.add("visible"), hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
-    hiddenTargetsArr[ranNumArr[1]].classList.add("visible"), hiddenTargetsArr[ranNumArr[1]].classList.remove("hidden");
-    hiddenTargetsArr[ranNumArr[2]].classList.add("visible"), hiddenTargetsArr[ranNumArr[2]].classList.remove("hidden");
+    hiddenTargetsArr[ranNumArr[0]].classList.add("visible");
+    hiddenTargetsArr[ranNumArr[0]].classList.remove("hidden");
+    hiddenTargetsArr[ranNumArr[0]].classList.add("blue");
+    hiddenTargetsArr[ranNumArr[1]].classList.add("visible");
+    hiddenTargetsArr[ranNumArr[1]].classList.remove("hidden");
+    hiddenTargetsArr[ranNumArr[1]].classList.add("red");
 }
 
 const hideEndMessageButton = () => { // hide end message
@@ -151,6 +171,7 @@ const startGame = () => { // starts timer, resets score, accuracy, hides all sph
         playStartClickSound()
         hardReset();
         hideAll();
+        showRandomSpheres();
         time = 30;
         const timeStart = setInterval(() => { // starts timer
             if (time >= 1 && time <= 30) {
@@ -169,22 +190,29 @@ const startGame = () => { // starts timer, resets score, accuracy, hides all sph
 }
 startGame();
 
-const targetAppear = () => { // random target appear on click selecting only from hidden targets
-    const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
-        return hiddenTarget.classList.contains("hidden");
-    })
-    let ranNum = Math.floor(Math.random()*hiddenTargetsArr.length);
-        hiddenTargetsArr[ranNum].classList.add("visible");
-        hiddenTargetsArr[ranNum].classList.remove("hidden");
+// const targetAppear = () => { // random target appear on click selecting only from hidden targets
+//     const hiddenTargetsArr = targetsArr.filter((hiddenTarget) => {
+//         return hiddenTarget.classList.contains("hidden");
+//     })
+//     let ranNum = Math.floor(Math.random()*hiddenTargetsArr.length);
+//         hiddenTargetsArr[ranNum].classList.add("visible");
+//         hiddenTargetsArr[ranNum].classList.remove("hidden");
+// }
+
+const targetVanish = () => { // target disappear on click
+    targetsArr.forEach((target) => {
+        if (target.classList.contains("visible")) {
+            target.classList.add("hidden");
+            target.classList.remove("visible");
+            target.classList.remove("red");
+            target.classList.remove("blue");
+        }
+    });
 }
 
-const targetVanish = (target) => { // target disappear on click
-    target.classList.add("hidden");
-    target.classList.remove("visible");
-}
-
-let targetClickCounter = 0
-let clickCounter = 0
+let blueClickCounter = 0;
+let redClickCounter = 0;
+let clickCounter = 0;
 
 const totalClicks = () => { // updates score and accuracy, plays click sound, logs total clicks on playable area
     playableArea.addEventListener("click", () => {
@@ -202,31 +230,36 @@ const targetClick = () => { // disappears the target clicked, appears another ra
     targetsArr.forEach((target) => {
         target.addEventListener("click", () => {
             playTargetHitSound();
-            targetAppear();
-            targetVanish(target);
-            targetClickCounter ++;
+            if (target.classList.contains("red")) {
+                redClickCounter ++;
+            } else if (target.classList.contains("blue")) {
+                blueClickCounter ++;
+            }
+            targetVanish();
+            showRandomSpheres();
         })
     });
 }
 targetClick();
 
 const accuracyUpdater = () => { // updates accuracy with each click, caps at 100%
-    if ((targetClickCounter/clickCounter * 100).toFixed(0) > 100) {
+    if ((blueClickCounter/clickCounter * 100).toFixed(0) > 100) {
         accuracy.innerHTML = `accuracy: 100%`
-    } else if ((targetClickCounter/clickCounter * 100).toFixed(0) <= 100) {
-        accuracy.innerHTML = `accuracy: ${(targetClickCounter/clickCounter * 100).toFixed(0)}%`;
+    } else if ((blueClickCounter/clickCounter * 100).toFixed(0) <= 100) {
+        accuracy.innerHTML = `accuracy: ${(blueClickCounter/clickCounter * 100).toFixed(0)}%`;
     }       
 }
 
 let scoreValue = 0;
 const scoreUpdater = () => { // updates score with each click
-    scoreValue = targetClickCounter*120 - clickCounter*20;
+    scoreValue = blueClickCounter*120 - (clickCounter*20 + redClickCounter*50);
     score.innerHTML = `score: ${scoreValue}`;
 }
 
 const hardReset = () => { // clears score, accuracy, clickCounter, and targetClickCounter
     clickCounter = 0;
-    targetClickCounter = 0;
+    blueClickCounter = 0;
+    redClickCounter = 0;
     accuracy.innerHTML = `accuracy:`;
     score.innerHTML = `score:`
 }
@@ -243,4 +276,5 @@ const resetClick = () => { // button press for reset, clears score, accuracy, cl
 }
 resetClick();
 
-// change showrandomspheres, targetappear, target vanish, points system
+// score not reseting with each new game
+// add a time limit for each new sphere showing

@@ -16,7 +16,7 @@ const clickSound = new Audio("./soundfx/loweredtrimmedallshots.mp3");
 const resetClickSound = new Audio ("./soundfx/loweredtrimmedresetclick.mp3");
 const startClickSound = new Audio("./soundfx/loweredtrimmedstartsound.mp3");
 const targetHitSound = new Audio("./soundfx/loweredtrimmedtargethit.mp3");
-const surpriseSound = new Audio("./soundfx/surprisesoundtrimmed.mp3");
+const reflexSound = new Audio("./soundfx/surprisesoundtrimmed.mp3");
 
 // audio play functions on click
 const playClickSound =() => {
@@ -26,27 +26,24 @@ const playClickSound =() => {
 const playResetClickSound = () => {
     resetClickSound.play();
 }
-
 const playStartClickSound = () => {
     startClickSound.play();
 }
-
 const playTargetHitSound = () => {
     targetHitSound.currentTime = 0; // resets audio to allow for consecutive clicks
     targetHitSound.play();
 }
-
-const playSurpriseSound = () => { // plays sound on hover over surprisebutton
+const playReflexSound = () => { // plays sound on hover over reflexbutton
     exitLink.addEventListener("mouseover", () => {
-        surpriseSound.currentTime = 0;
-        surpriseSound.play();
+        reflexSound.currentTime = 0;
+        reflexSound.play();
     });
     exitLink.addEventListener("mouseout", ()=> { // stops and resets audio when mouse leaves
-        surpriseSound.pause();
-        surpriseSound.currentTime = 0;
+        reflexSound.pause();
+        reflexSound.currentTime = 0;
     })
 }
-playSurpriseSound();
+playReflexSound();
 
 // media query for js, senses if css is being matched
 const screenWidth = window.matchMedia('(orientation: landscape) and (min-width: 1080px)');
@@ -65,8 +62,6 @@ const portraitScreenWidthChange = () => {
     portraitScreenWidth.addEventListener("change", () => {
     });
 } 
-
-let time = 30; // timer starts at 30
 
 const hideAll = () => { //hides all spheres
     screenWidthChange();
@@ -143,6 +138,8 @@ const disableReset = () => { // disable reset for 1.5 secs to prevent multiple c
     resett.disabled = true;
     setTimeout('resett.disabled=false', 1200);
 }
+
+let time = 30; // timer starts at 30
 
 const startGame = () => { // starts timer, resets score, accuracy, hides all spheres, shows 3 random spheres, hides endmessage, plays start sound, disables reset for 1.2s
     startButton.addEventListener("click", () => {
@@ -229,7 +226,7 @@ const hardReset = () => { // clears score, accuracy, clickCounter, and targetCli
         clickCounter = 0;
         targetClickCounter = 0;
         accuracy.innerHTML = `accuracy:`;
-        score.innerHTML = `score:`
+        score.innerHTML = `score:`;
 }
 
 const resetClick = () => { // button press for reset, clears score, accuracy, clickCounter, and targetClickCounter, hides all spheres, plays reset sound, hides endmessage, disables startbutton for 1.2s
