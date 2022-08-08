@@ -105,7 +105,6 @@ const hideEndMessageButton = () => { // hide end message
     endMessage.classList.add("gone");
     endMessage.classList.remove("not-gone");
 }
-hideEndMessageButton();
 
 const copyEndMessage = () => { // click to copy end message using swal for a nice looking alert
     endMessage.addEventListener("click", () => {

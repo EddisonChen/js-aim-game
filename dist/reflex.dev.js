@@ -144,8 +144,6 @@ var hideEndMessageButton = function hideEndMessageButton() {
   endMessage.classList.remove("not-gone");
 };
 
-hideEndMessageButton();
-
 var copyEndMessage = function copyEndMessage() {
   // click to copy end message using swal for a nice looking alert
   endMessage.addEventListener("click", function () {

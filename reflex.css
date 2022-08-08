@@ -119,6 +119,7 @@
 * body .end-message {
   color: white;
   padding: 20px;
+  text-align: center;
 }
 * body .end-message .gone {
   display: none;
