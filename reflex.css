@@ -13,7 +13,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr 1fr 40fr 1fr;
-  background-image: url("./pics/reflexvertback.jpg");
+  background-image: url("./pics/universe.jpg");
   background-size: 900px;
 }
 * body h1 {
@@ -240,7 +240,7 @@
   background: radial-gradient(circle at 35% 35%, #db0fa8, #e21010);
 }
 * body .grid .grid-in-grid .blue {
-  background: radial-gradient(circle at 35% 35%, #0f7291, #0050fc);
+  background: radial-gradient(circle at 35% 35%, #f7e98e, #cba135);
 }
 * body .bottom-nav-bar {
   display: flex;
@@ -358,7 +358,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr 0.1fr 15fr 1fr;
-    background-image: url("./pics/reflexlandscapewallpaper.jpg");
+    background-image: url("./pics/universe.jpg");
     background-size: 1944px;
   }
   * body h2, * body h3, * body h4 {

@@ -17,7 +17,7 @@
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 2fr 1fr 40fr 1fr;
-        background-image: url("./pics/reflexvertback.jpg");
+        background-image: url("./pics/universe.jpg");
         background-size: 900px;
         // border: 2px solid white;
 
@@ -188,7 +188,7 @@
                 }
 
                 .blue {
-                    background:radial-gradient(circle at 35% 35%, #0f7291, #0050fc);
+                    background:radial-gradient(circle at 35% 35%, #f7e98e, #cba135);
                 }
             }
         }
@@ -342,7 +342,7 @@
       display:grid;
       grid-template-columns: 1fr;
       grid-template-rows: 2fr 1fr .1fr 15fr 1fr;
-      background-image: url("./pics/reflexlandscapewallpaper.jpg");
+      background-image: url("./pics/universe.jpg");
       background-size: 1944px;
       // border: 2px solid white;
 
@@ -468,7 +468,7 @@
         padding: 30px;
         font-size: 35px;
       }
-      
+
       .bottom-nav-bar {
         .button-49,
         .button-49:after {
