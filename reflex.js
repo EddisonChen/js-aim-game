@@ -160,7 +160,6 @@ const showEndMessageButton = () => { // show end message, different based on sco
             endMessage.innerHTML =`With a score of ${scoreValue}, you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you are, in fact, not great at everything. 
             <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
         }}
-
     copyEndMessage();
     endMessage.classList.remove("gone");
     endMessage.classList.add("not-gone");
@@ -183,13 +182,18 @@ const startGame = () => { // starts timer, resets score, accuracy, hides all sph
         showRandomSpheres();
         time = 30;
         const timeStart = setInterval(() => { // starts timer
-            if (time >= 1 && time <= 30) {
+            if (time >= 1 && time < 31) {
                 timer.innerHTML = `${time} secs`;
                 time --;
+                setInterval(targetsArr.forEach((target) => {
+                    if (target.classList.contains("visible")) {
+                        setTimeout(showRandomSpheres, 1000);
+                    }
+                }),1);
             } else if (time = 1) { // resets timer 
                 clearInterval(timeStart);
-                hideAll();
                 showEndMessageButton()
+                hideAll();
                 time = 31;
                 timer.innerHTML = `${time - 1} secs`
             }
@@ -230,6 +234,7 @@ const targetClick = () => { // disappears the target clicked, appears another ra
     targetsArr.forEach((target) => {
         target.addEventListener("click", () => {
             playTargetHitSound();
+            clearInterval(showRandomSpheres);
             if (target.classList.contains("red")) {
                 redClickCounter ++;
             } else if (target.classList.contains("blue")) {
@@ -271,6 +276,7 @@ const resetClick = () => { // button press for reset, clears score, accuracy, cl
         hideEndMessageButton();
         hardReset();
         hideAll();
+        clearInterval(showRandomSpheres);
         setTimeout('startButton.disabled = false', 1200); // disables startbutton for 1.2s to prevent consecutive start reset clicks leading to timer speeding up bug
     });
 }
@@ -282,4 +288,4 @@ resetClick();
 // if not on screen, getthem to show
 // if on screen, hide after something seconds
 
-// change score ratings desktop vs mobile for reflex
+// get time limit to reset on target click, get targets to stop showing on 0
