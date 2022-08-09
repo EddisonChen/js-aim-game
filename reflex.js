@@ -131,20 +131,36 @@ const copyEndMessage = () => { // click to copy end message using swal for a nic
 }
 
 const showEndMessageButton = () => { // show end message, different based on score received, on click, copies endmessage to clipboard.
-    if (scoreValue > 8000) {
-        endMessage.innerHTML = `Absolutely incredible. ${scoreValue} points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends that you've found a new career!
-        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`
-        ; // maybe i can get rid of <a> somehow.
-    } else if (scoreValue > 6000 && scoreValue < 8000) {
-        endMessage.innerHTML = `Nice! Your score was ${scoreValue}! Tell your friends just to brag! Click to share with your friends because they deserve to hear about your successes!
-        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
-    } else if (scoreValue < 6000 && scoreValue > 4000) {
-        endMessage.innerHTML = `Don't be sorry, be better. ${scoreValue} points? I expect more from you. Click to share with your friends, if you feel like this score is even share-worthy..
-        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
-    } else if (scoreValue < 4000) {
-        endMessage.innerHTML =`With a score of ${scoreValue}, you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you are, in fact, not great at everything. 
-        <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+    if (landscapeScreenHeight.matches || portraitScreenWidth.matches) {
+        if (scoreValue > 4000) {
+            endMessage.innerHTML = `Absolutely incredible. ${scoreValue} points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends that you've found a new career!
+            <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        } else if (scoreValue > 2500 && scoreValue < 4000) {
+            endMessage.innerHTML = `Nice! Your score was ${scoreValue}! Tell your friends just to brag! Click to share with your friends because they deserve to hear about your successes!
+            <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        } else if (scoreValue < 2500 && scoreValue > 1000) {
+            endMessage.innerHTML = `Don't be sorry, be better. ${scoreValue} points? I expect more from you. Click to share with your friends, if you feel like this score is even share-worthy..
+            <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        } else if (scoreValue < 1000) {
+            endMessage.innerHTML =`With a score of ${scoreValue}, you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you are, in fact, not great at everything. 
+            <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        }
     }
+     else {
+        if (scoreValue > 6000) {
+            endMessage.innerHTML = `Absolutely incredible. ${scoreValue} points. If this game ever takes off, you'll be my first pro. I'll pay you I swear. Click to share with your friends that you've found a new career!
+            <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        } else if (scoreValue > 4500 && scoreValue < 6000) {
+            endMessage.innerHTML = `Nice! Your score was ${scoreValue}! Tell your friends just to brag! Click to share with your friends because they deserve to hear about your successes!
+            <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        } else if (scoreValue < 4500 && scoreValue > 3000) {
+            endMessage.innerHTML = `Don't be sorry, be better. ${scoreValue} points? I expect more from you. Click to share with your friends, if you feel like this score is even share-worthy..
+            <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        } else if (scoreValue < 3000) {
+            endMessage.innerHTML =`With a score of ${scoreValue}, you must have the slowest hands in town. I'm disappointed! Click to share with your friends that you are, in fact, not great at everything. 
+            <a href='https://mrmanlyish.github.io/js-aim-game/'></a>`;
+        }}
+
     copyEndMessage();
     endMessage.classList.remove("gone");
     endMessage.classList.add("not-gone");
@@ -265,3 +281,5 @@ resetClick();
 // set timeout with a set interval with an if statement that checks if the spheres are onscreen or not
 // if not on screen, getthem to show
 // if on screen, hide after something seconds
+
+// change score ratings desktop vs mobile for reflex
