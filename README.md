@@ -1,5 +1,7 @@
 # js-aim-game
 
-Aimlabs GridShot inspired, click on as many spheres as possible within 30 seconds to get your score.
+Aimlabs GridShot inspired, click on as many spheres as possible within 30 seconds to get your score. The alternate game mode is ReflexField, in which the objective is to click each golden target that appears as many time as possible.
 
-https://mrmanlyish.github.io/js-aim-game/
+Made with JavaScript, HTML, and SCSS.
+
+https://eddisonchen.github.io/js-aim-game/index.html
